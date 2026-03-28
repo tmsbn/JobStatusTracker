@@ -120,7 +120,76 @@ set oneWeekAgo to (current date) - (7 * days)
 -- Change 7 to any number of days, e.g., 30 for a month
 ```
 
-## Google Sheets Setup (One-Time)
+## Setting Up on a New Mac
+
+### Prerequisites
+
+- macOS (tested on macOS Sequoia / Apple Silicon)
+- Apple Mail.app configured with at least one Gmail account
+- [Homebrew](https://brew.sh/) installed
+
+### Step 1: Install Homebrew (if not already installed)
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+After installing, follow the instructions printed in the terminal to add Homebrew to your PATH (usually involves adding a line to `~/.zprofile`).
+
+### Step 2: Install Python 3
+
+```bash
+brew install python3
+```
+
+Verify with `python3 --version` — you need Python 3.9+.
+
+### Step 3: Install Claude Code CLI
+
+Install Claude Code following the instructions at [claude.ai/claude-code](https://claude.ai/claude-code). The script expects the `claude` binary to be available at `~/.local/bin/claude`.
+
+Verify with:
+
+```bash
+~/.local/bin/claude --version
+```
+
+### Step 4: Clone the repository
+
+```bash
+cd ~/Documents
+git clone https://github.com/tmsbn/JobStatusTracker.git "Job Tracker"
+cd "Job Tracker"
+```
+
+### Step 5: Create the Python virtual environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install openpyxl gspread google-auth-oauthlib
+deactivate
+```
+
+### Step 6: Create the logs directory
+
+```bash
+mkdir -p logs
+```
+
+### Step 7: Grant Mail.app automation permission
+
+The first time you run the script, macOS will prompt you to allow Terminal (or your terminal app) to control Mail.app. Click **Allow**.
+
+If you miss the prompt or need to re-enable it:
+
+1. Open **System Settings** > **Privacy & Security** > **Automation**
+2. Find **Terminal** (or your terminal app, e.g., iTerm2)
+3. Enable the toggle for **Mail**
+
+### Step 8: Set up Google Sheets (optional)
+
+If you want job data synced to a Google Spreadsheet:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project (or select an existing one)
@@ -132,10 +201,81 @@ set oneWeekAgo to (current date) - (7 * days)
    - Name: anything (e.g., "Job Tracker")
 5. Download the JSON file
 6. Save it as `~/Documents/Job Tracker/credentials.json`
-7. Run the script — a browser window will open for you to sign in with your Google account
-8. After signing in, the token is saved and future runs are fully automatic
+7. Run the script once manually (`./run.sh`) — a browser window will open for Google sign-in
+8. After signing in, `token.json` is saved and all future runs are fully automatic
 
-**Note:** If running via launchd (scheduled), the first run must be manual so you can complete the browser sign-in. After that, scheduled runs work automatically.
+**Note:** If you skip this step, the Google Sheets upload will be silently skipped and the script still works.
+
+### Step 9: Run it
+
+```bash
+cd ~/Documents/Job\ Tracker
+./run.sh
+```
+
+On a successful run, you'll see output like:
+
+```
+============================================
+  Job Application Tracker
+============================================
+
+Step 1/3: Extracting job-related emails from Mail.app (last 7 days)...
+Step 2/3: Processing emails with Claude AI...
+Step 3/3: Updating Google Spreadsheet...
+
+============================================
+  Done! Your job tracker is ready.
+============================================
+```
+
+### Step 10: Set up daily automation (optional)
+
+To have the tracker run automatically every day at 6:00 PM, create a `launchd` agent:
+
+```bash
+cat > ~/Library/LaunchAgents/com.jobtracker.plist << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jobtracker</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>$HOME/Documents/Job Tracker/run_scheduled.sh</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>18</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>$HOME/Documents/Job Tracker/logs/launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>$HOME/Documents/Job Tracker/logs/launchd_stderr.log</string>
+</dict>
+</plist>
+EOF
+```
+
+**Important:** Also edit `run_scheduled.sh` and update the `HOME` variable on line 5 to your own home directory path (e.g., `/Users/yourname`).
+
+Then load the agent:
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.jobtracker.plist
+```
+
+If the Mac is asleep at 6 PM, the job will run automatically when the laptop is next opened.
+
+**Note:** The first run must be manual (Step 9) so you can complete the Google sign-in and approve the Mail.app automation prompt. After that, scheduled runs work unattended.
 
 ## Requirements
 
