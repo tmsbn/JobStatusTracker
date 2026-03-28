@@ -1,0 +1,122 @@
+-- extract_emails.applescript
+-- Searches all Mail.app accounts for job-related emails from the last 7 days
+-- Outputs structured text for AI processing
+
+on run
+	set oneWeekAgo to (current date) - (7 * days)
+	set output to ""
+	set emailCount to 0
+
+	tell application "Mail"
+		repeat with acct in every account
+			try
+				set acctName to name of acct
+
+				-- Search INBOX
+				try
+					set inboxMbox to mailbox "INBOX" of acct
+					set recentMsgs to (every message of inboxMbox whose date received > oneWeekAgo)
+
+					repeat with msg in recentMsgs
+						try
+							set subj to subject of msg
+
+							if subj contains "application" or subj contains "applied" or subj contains "interview" or subj contains "offer" or subj contains "rejected" or subj contains "hiring" or subj contains "position" or subj contains "candidate" or subj contains "recruitment" or subj contains "resume" or subj contains "job" or subj contains "career" or subj contains "opportunity" or subj contains "recruiter" or subj contains "onboarding" or subj contains "background check" then
+
+								set senderAddr to sender of msg
+								set dateRecv to date received of msg as string
+
+								-- Get body safely, truncate to 1500 chars
+								set bodyContent to ""
+								try
+									set bodyContent to content of msg
+									if (count of bodyContent) > 1500 then
+										set bodyContent to text 1 thru 1500 of bodyContent
+									end if
+								on error
+									set bodyContent to "(could not read body)"
+								end try
+
+								set output to output & "===EMAIL_START===" & linefeed
+								set output to output & "Account: " & acctName & linefeed
+								set output to output & "Subject: " & subj & linefeed
+								set output to output & "From: " & senderAddr & linefeed
+								set output to output & "Date: " & dateRecv & linefeed
+								set output to output & "Body: " & bodyContent & linefeed
+								set output to output & "===EMAIL_END===" & linefeed & linefeed
+
+								set emailCount to emailCount + 1
+							end if
+
+						on error
+							-- Skip problematic messages
+						end try
+					end repeat
+				on error
+					-- Skip if INBOX not accessible
+				end try
+
+				-- Search Sent mailbox
+				try
+					set sentMbox to sent mailbox of acct
+					set recentSent to (every message of sentMbox whose date received > oneWeekAgo)
+
+					repeat with msg in recentSent
+						try
+							set subj to subject of msg
+
+							if subj contains "application" or subj contains "applied" or subj contains "interview" or subj contains "offer" or subj contains "position" or subj contains "resume" or subj contains "job" or subj contains "career" or subj contains "cover letter" then
+
+								set senderAddr to sender of msg
+								set recipientList to ""
+								try
+									repeat with r in to recipients of msg
+										set recipientList to recipientList & address of r & ", "
+									end repeat
+								end try
+
+								set dateRecv to date received of msg as string
+
+								set bodyContent to ""
+								try
+									set bodyContent to content of msg
+									if (count of bodyContent) > 1500 then
+										set bodyContent to text 1 thru 1500 of bodyContent
+									end if
+								on error
+									set bodyContent to "(could not read body)"
+								end try
+
+								set output to output & "===EMAIL_START===" & linefeed
+								set output to output & "Account: " & acctName & linefeed
+								set output to output & "Direction: SENT" & linefeed
+								set output to output & "Subject: " & subj & linefeed
+								set output to output & "From: " & senderAddr & linefeed
+								set output to output & "To: " & recipientList & linefeed
+								set output to output & "Date: " & dateRecv & linefeed
+								set output to output & "Body: " & bodyContent & linefeed
+								set output to output & "===EMAIL_END===" & linefeed & linefeed
+
+								set emailCount to emailCount + 1
+							end if
+
+						on error
+							-- Skip problematic messages
+						end try
+					end repeat
+				on error
+					-- Skip if Sent not accessible
+				end try
+
+			on error
+				-- Skip problematic accounts
+			end try
+		end repeat
+	end tell
+
+	if emailCount = 0 then
+		return "NO_EMAILS_FOUND"
+	end if
+
+	return output
+end run

@@ -1,0 +1,570 @@
+[
+  {
+    "job_id": "JOB-001",
+    "company": "Amazon",
+    "role": "Sr. Category Manager, Consumables Private Brands",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-20",
+    "last_updated": "2026-03-25",
+    "subject": "Share your feedback: Your recent Amazon interview experience",
+    "notes": "Interviewed with Adi on Mar 20. Rejected Mar 23. Recruiter: Uma Althi, handed off to Nic Roldan. Positive interview but did not progress. Feedback survey received Mar 25. Job ID: 3201219.",
+    "status_history": [
+      {
+        "status": "Interview",
+        "date": "2026-03-20"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-23"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-002",
+    "company": "Amazon",
+    "role": "Senior Vendor Manager, Home & Lifestyle",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10371579.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-003",
+    "company": "Amazon",
+    "role": "Vendor Manager, PC",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10372774.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-004",
+    "company": "Amazon",
+    "role": "Vendor Manager, Canada Consumables",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 3207275.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-005",
+    "company": "Apex Systems",
+    "role": "Sr. Procurement Consultant",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-03-25",
+    "last_updated": "2026-03-26",
+    "subject": "Re: Sr. Procurement Consultant \u2013 Job #3026452 | Merin Peter",
+    "notes": "Client: Northwestern Mutual. 6-month contract with extension possibility. Milwaukee, WI or remote. Max $34/hr W2, no sponsorship. Recruiter Ryan Green responded with role details and requested phone call. Job #3026452.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-25"
+      },
+      {
+        "status": "Follow-up",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-006",
+    "company": "Slate Group Consulting",
+    "role": "Sr. Budget Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-25",
+    "last_updated": "2026-03-25",
+    "subject": "RE: [EXTERNAL] Checking In \u2013 Merin Peter | Sr. Budget Manager Candidate",
+    "notes": "Completed interview loop. Role filled by Suzanne (in talks since Oct). Positive feedback: high energy and passionate. Future pipeline opportunities promised. Contact: Natasha Maestas, VP Operations. Invited to women's networking event; RSVP confirmed.",
+    "status_history": [
+      {
+        "status": "Interview",
+        "date": "2026-03-25"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-25"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-007",
+    "company": "tms",
+    "role": "Merchandise Category Growth Director",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-27",
+    "last_updated": "2026-03-27",
+    "subject": "Your Application for the Position Merchandise Category Growth Director",
+    "notes": "Application received via SuccessFactors. Recruiter: Allison Spriggs, Talent Acquisition Manager.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-27"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-008",
+    "company": "DoorDash",
+    "role": "Senior Associate, Commerce Platform, Growth & Quality - Strategy & Operations",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-24",
+    "last_updated": "2026-03-24",
+    "subject": "DoorDash Application Status",
+    "notes": "Position no longer being hired for. Applied via Greenhouse.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-24"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-24"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-009",
+    "company": "DoorDash",
+    "role": "Senior Associate, New Verticals Integrated Marketing",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-27",
+    "last_updated": "2026-03-27",
+    "subject": "DoorDash Application Status",
+    "notes": "Position no longer being hired for. Applied via Greenhouse.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-27"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-27"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-010",
+    "company": "Seattle Corporate Search",
+    "role": "Unknown Role",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-25",
+    "last_updated": "2026-03-26",
+    "subject": "RE: Form Submission - Application Form 3",
+    "notes": "General application submitted via form and PandaDoc. No current openings matching background. Contact: Maja Jensen. Encouraged to follow on LinkedIn for future roles.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-25"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-011",
+    "company": "Meta",
+    "role": "Program Manager V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 4 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-012",
+    "company": "Meta",
+    "role": "Project Manager II (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-013",
+    "company": "Meta",
+    "role": "Product Marketing Manager V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-014",
+    "company": "Meta",
+    "role": "Project Coordinator IV (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-015",
+    "company": "Meta",
+    "role": "Project Manager IV (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-016",
+    "company": "Meta",
+    "role": "Project Coordinator V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-017",
+    "company": "Meta",
+    "role": "Program Manager III (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-018",
+    "company": "Meta",
+    "role": "Sourcing Manager III (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-019",
+    "company": "Meta",
+    "role": "Project Coordinator II (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-020",
+    "company": "Meta",
+    "role": "Project Manager V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-021",
+    "company": "Meta",
+    "role": "Marketing Manager IV (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-022",
+    "company": "Meta",
+    "role": "Program Manager IV (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-023",
+    "company": "Meta",
+    "role": "Strategic Partner Manager IV (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-024",
+    "company": "Meta",
+    "role": "Project Manager III (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-025",
+    "company": "Meta",
+    "role": "Marketing Manager V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-026",
+    "company": "Meta",
+    "role": "Product Marketing Manager I (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-027",
+    "company": "Meta",
+    "role": "Program Manager II (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-028",
+    "company": "Meta",
+    "role": "Strategic Partner Manager V (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-27",
+    "last_updated": "2026-03-27",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-27"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-029",
+    "company": "Meta",
+    "role": "Vendor Management Associate I (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-27",
+    "last_updated": "2026-03-27",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-27"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-030",
+    "company": "Microsoft",
+    "role": "Supply Chain Planner (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "You Applied for a Contract Role at Microsoft",
+    "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 2 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-031",
+    "company": "Microsoft",
+    "role": "Project Manager (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "You Applied for a Contract Role at Microsoft",
+    "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 4 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-032",
+    "company": "Microsoft",
+    "role": "Program Manager (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-26",
+    "last_updated": "2026-03-26",
+    "subject": "You Applied for a Contract Role at Microsoft",
+    "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 5 positions with this title applied.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-26"
+      }
+    ]
+  }
+]
