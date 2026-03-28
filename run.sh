@@ -1,7 +1,7 @@
 #!/bin/bash
-# Job Tracker - Extracts job application emails and creates an Excel summary
+# Job Tracker - Extracts job application emails and updates Google Spreadsheet
 #
-# Flow: Mail.app (AppleScript) → Claude Code (AI parsing + Job ID tracking) → Excel
+# Flow: Mail.app (AppleScript) → Claude Code (AI parsing + Job ID tracking) → Google Sheets
 #
 # Persistent state is stored in job_data.json — each application gets a unique
 # Job ID that is preserved across runs. AI detects status changes from new emails.
@@ -12,7 +12,6 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VENV_DIR="$SCRIPT_DIR/.venv"
-OUTPUT_FILE="$HOME/Documents/Job Tracker.xlsx"
 JOB_DATA_FILE="$SCRIPT_DIR/job_data.json"
 TEMP_DIR=$(mktemp -d)
 
@@ -59,11 +58,12 @@ RAW_OUTPUT=$(osascript "$SCRIPT_DIR/extract_emails.applescript" 2>/dev/null) || 
 if [ "$RAW_OUTPUT" = "NO_EMAILS_FOUND" ] || [ -z "$RAW_OUTPUT" ]; then
     echo "  No new job-related emails found in the last 7 days."
     if [ -f "$JOB_DATA_FILE" ]; then
-        echo "  Re-exporting existing data to Excel..."
+        echo "  Re-exporting existing data to Google Sheets..."
         source "$VENV_DIR/bin/activate"
-        python3 "$SCRIPT_DIR/write_excel.py" "$JOB_DATA_FILE" "$OUTPUT_FILE"
-        echo ""
-        echo "  File: $OUTPUT_FILE"
+        GSHEET_CREDS="$SCRIPT_DIR/credentials.json"
+        if [ -f "$GSHEET_CREDS" ]; then
+            python3 "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1
+        fi
     fi
     exit 0
 fi
@@ -208,17 +208,16 @@ cp "$TEMP_DIR/processed.json" "$JOB_DATA_FILE"
 echo "  Database saved to: $JOB_DATA_FILE"
 echo ""
 
-# ── Step 3: Write to Excel ────────────────────────────────────
-echo "Step 3/3: Writing Excel spreadsheet..."
+# ── Step 3: Write to Google Sheets ────────────────────────────
+echo "Step 3/3: Updating Google Spreadsheet..."
 
 source "$VENV_DIR/bin/activate"
-python3 "$SCRIPT_DIR/write_excel.py" "$JOB_DATA_FILE" "$OUTPUT_FILE"
+python3 "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1 || {
+    echo "  Error: Google Sheets update failed."
+    exit 1
+}
 
 echo ""
 echo "============================================"
 echo "  Done! Your job tracker is ready."
-echo "  File: $OUTPUT_FILE"
 echo "============================================"
-echo ""
-echo "To open it now, run:"
-echo "  open \"$OUTPUT_FILE\""

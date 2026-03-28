@@ -1,17 +1,18 @@
 # Job Application Tracker
 
-An automated system that extracts job application emails from Apple Mail, uses Claude AI to intelligently parse and deduplicate them, and outputs a formatted Excel spreadsheet with persistent Job ID tracking.
+An automated system that extracts job application emails from Apple Mail, uses Claude AI to intelligently parse and deduplicate them, and outputs to both a formatted Excel spreadsheet and a Google Spreadsheet with persistent Job ID tracking.
 
 ## How It Works
 
 ```
-Apple Mail.app ──> AppleScript ──> Claude Code AI ──> Python ──> Excel
-    (extract)       (raw text)      (parse & dedupe)   (format)   (output)
+                                                          ┌──> Excel (.xlsx)
+Apple Mail.app ──> AppleScript ──> Claude Code AI ──> Python
+    (extract)       (raw text)      (parse & dedupe)      └──> Google Sheets
 ```
 
 1. **AppleScript** queries all connected Gmail accounts in Mail.app for job-related emails from the last 7 days (inbox + sent)
 2. **Claude Code CLI** (`claude -p`) analyzes the raw emails with AI to extract structured data — company, role, status — and deduplicates multiple emails about the same application
-3. **Python** (`openpyxl`) writes everything to a formatted, color-coded Excel spreadsheet
+3. **Python** writes to both a local Excel file (`openpyxl`) and a Google Spreadsheet (`gspread`)
 
 ## Job ID System
 
@@ -39,13 +40,18 @@ Applied -> Interview -> Offer -> Accepted
 | `run_scheduled.sh` | Wrapper for launchd — sets up PATH and logging |
 | `extract_emails.applescript` | Searches Mail.app for job-related emails (last 7 days) |
 | `write_excel.py` | Writes structured JSON to formatted Excel with color-coded statuses |
+| `write_gsheet.py` | Writes structured JSON to Google Spreadsheet with formatting |
+| `credentials.json` | Google OAuth2 client credentials (you provide this — see setup below) |
+| `token.json` | Google auth token (auto-generated after first login) |
+| `.gsheet_id` | Stores the Google Spreadsheet ID for reuse (auto-generated) |
 | `job_data.json` | Persistent database of all tracked applications (auto-generated) |
 | `logs/` | Run logs with timestamps (last 30 retained) |
 | `.venv/` | Python virtual environment with `openpyxl` |
 
 ## Output
 
-**Location:** `~/Documents/Job Tracker.xlsx`
+**Excel:** `~/Documents/Job Tracker.xlsx`
+**Google Sheets:** Auto-created spreadsheet named "Job Tracker" (URL printed on each run)
 
 ### Job Applications Sheet
 
@@ -114,10 +120,28 @@ set oneWeekAgo to (current date) - (7 * days)
 -- Change 7 to any number of days, e.g., 30 for a month
 ```
 
+## Google Sheets Setup (One-Time)
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project (or select an existing one)
+3. Enable these APIs:
+   - **Google Sheets API** (search for it in "APIs & Services" > "Library")
+   - **Google Drive API**
+4. Go to **Credentials** > **Create Credentials** > **OAuth client ID**
+   - Application type: **Desktop app**
+   - Name: anything (e.g., "Job Tracker")
+5. Download the JSON file
+6. Save it as `~/Documents/Job Tracker/credentials.json`
+7. Run the script — a browser window will open for you to sign in with your Google account
+8. After signing in, the token is saved and future runs are fully automatic
+
+**Note:** If running via launchd (scheduled), the first run must be manual so you can complete the browser sign-in. After that, scheduled runs work automatically.
+
 ## Requirements
 
 - macOS with Apple Mail.app connected to Gmail accounts
 - [Claude Code CLI](https://claude.ai/claude-code) installed at `~/.local/bin/claude`
 - Python 3 (via Homebrew)
-- `openpyxl` (installed in `.venv`)
+- `openpyxl`, `gspread`, `google-auth-oauthlib` (installed in `.venv`)
 - Mail.app automation permission for Terminal (System Settings > Privacy & Security > Automation)
+- Google Cloud credentials for Sheets (optional — Excel works without it)

@@ -1,2 +1,5 @@
 .venv/
 .DS_Store
+credentials.json
+token.json
+.gsheet_id
