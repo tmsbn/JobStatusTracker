@@ -217,7 +217,7 @@
     "job_url": "",
     "status": "Applied",
     "date": "2026-03-26",
-    "last_updated": "2026-03-26",
+    "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
     "status_history": [
@@ -302,7 +302,7 @@
     "job_url": "",
     "status": "Applied",
     "date": "2026-03-26",
-    "last_updated": "2026-03-26",
+    "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
     "status_history": [
@@ -336,7 +336,7 @@
     "job_url": "",
     "status": "Applied",
     "date": "2026-03-26",
-    "last_updated": "2026-03-26",
+    "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
     "status_history": [
@@ -387,7 +387,7 @@
     "job_url": "",
     "status": "Applied",
     "date": "2026-03-26",
-    "last_updated": "2026-03-26",
+    "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
     "status_history": [
@@ -487,15 +487,19 @@
     "company": "Meta",
     "role": "Strategic Partner Manager V (Contract)",
     "job_url": "",
-    "status": "Applied",
+    "status": "Rejected",
     "date": "2026-03-27",
-    "last_updated": "2026-03-27",
-    "subject": "Your Meta Application Update",
-    "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "last_updated": "2026-03-30",
+    "subject": "Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing. Rejected on 2026-03-30 - decided to move forward with other applicants.",
     "status_history": [
       {
         "status": "Applied",
         "date": "2026-03-27"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-30"
       }
     ]
   },
@@ -557,13 +561,909 @@
     "job_url": "",
     "status": "Applied",
     "date": "2026-03-26",
-    "last_updated": "2026-03-26",
+    "last_updated": "2026-03-30",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 5 positions with this title applied.",
     "status_history": [
       {
         "status": "Applied",
         "date": "2026-03-26"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-033",
+    "company": "Microsoft",
+    "role": "Senior Business Development Manager - Windows + Devices",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-29",
+    "last_updated": "2026-03-29",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200032905.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-29"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-034",
+    "company": "Microsoft",
+    "role": "Product Marketing Manager - AI Software Development",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200030014.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-035",
+    "company": "Microsoft",
+    "role": "Senior Product Marketing Manager, Agentic Applications",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200033347.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-036",
+    "company": "Microsoft",
+    "role": "Senior Product Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200028282.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-037",
+    "company": "Microsoft",
+    "role": "Senior Product Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200025834.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-038",
+    "company": "Amazon",
+    "role": "Sr. Business Developer Tech - Unmanaged SMB Amazon Shipping",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 3161021.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-039",
+    "company": "Expedia",
+    "role": "Senior Manager - Customer Strategy (Brand Expedia)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application for the Senior Manager - Customer Strategy (Brand Expedia) & R-99518",
+    "notes": "Application received. Job ID: R-99518.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-040",
+    "company": "Expedia",
+    "role": "Integrated Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application for the Integrated Marketing Manager & R-102864",
+    "notes": "Application received. Job ID: R-102864.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-041",
+    "company": "Microsoft",
+    "role": "Communications Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200031997.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-042",
+    "company": "Microsoft",
+    "role": "Business Development Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200033033.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-043",
+    "company": "Microsoft",
+    "role": "Senior Events Integrated Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200032896.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-044",
+    "company": "Microsoft",
+    "role": "Director, AI Strategy & Operations Program Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application!",
+    "notes": "Application received and under review. Job ID: 200026167.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-045",
+    "company": "Expedia",
+    "role": "Senior Market Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application for the Senior Market Manager & R-103972",
+    "notes": "Application received. Job ID: R-103972.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-046",
+    "company": "Expedia",
+    "role": "Senior Category Manager, Brand Expedia",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application for the Senior Category Manager, Brand Expedia & R-101897",
+    "notes": "Application received. Job ID: R-101897.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-047",
+    "company": "Expedia",
+    "role": "Senior Account Manager - Las Vegas",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-03-28",
+    "subject": "Thank you for your application for the Senior Account Manager - Las Vegas & R-104199",
+    "notes": "Application received. Job ID: R-104199.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-048",
+    "company": "Amazon",
+    "role": "Sr. Global Brand Engagement Manager, Customer Trust External Relations",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10379297.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-049",
+    "company": "Amazon",
+    "role": "Manager Program Management, DA Lifecycle Experience and Services",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "You've withdrawn your Amazon job application!",
+    "notes": "Application submitted then withdrawn on 2026-03-30. Job ID: 3202637.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-050",
+    "company": "Amazon",
+    "role": "Sr. Business Development Mgr, Creators",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10379688.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-051",
+    "company": "Amazon",
+    "role": "Senior Business Development Manager, Amazon B2B Payments & Lending",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 3126323.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-052",
+    "company": "Amazon",
+    "role": "Contracts Manager, Buy with Prime & Amazon Multi-Channel Fulfillment",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "You've withdrawn your Amazon job application!",
+    "notes": "Application submitted then withdrawn on 2026-03-30. Job ID: 3180159.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-053",
+    "company": "Amazon",
+    "role": "Sr. Program Manager, Bee",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10376584.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-054",
+    "company": "Amazon",
+    "role": "Senior Program Manager Last Mile Launch, Worldwide Engineering and Innovation Launch and Expansion",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 3203823.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-055",
+    "company": "Amazon",
+    "role": "Senior Program Manager, Central Selection, WWGS (Worldwide Grocery Stores)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 3203926.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-056",
+    "company": "Amazon",
+    "role": "Senior Program Manager, Flex BOSS, AMZL Flex BOSS",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10376072.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-057",
+    "company": "Amazon",
+    "role": "Production Manager, Amazon Publishing Global",
+    "job_url": "",
+    "status": "Interview",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Action Required for your Amazon Application - Complete Assessment",
+    "notes": "Application submitted. Online assessment required within 2 weeks to proceed. Job ID: 10377738.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Interview",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-058",
+    "company": "Amazon",
+    "role": "Program Manager II, Applied AI",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Keep track of your application",
+    "notes": "Application submitted. Job ID: 10378509.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-059",
+    "company": "Solomon Page Group LLC",
+    "role": "eCommerce Strategist (CX and Site Merchandising)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Merin, your application was sent to Solomon Page Group LLC",
+    "notes": "Applied via LinkedIn Easy Apply. Location: Seattle, WA (Hybrid).",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-060",
+    "company": "TikTok",
+    "role": "TikTok Shop - Assortment Strategy Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Merin, your application was sent to TikTok",
+    "notes": "Applied via LinkedIn Easy Apply. Location: Seattle, WA (On-site).",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-061",
+    "company": "Sol-ti",
+    "role": "Sr. Manager, E-Commerce & Digital Marketing",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Merin, your application was sent to Sol-ti",
+    "notes": "Applied via LinkedIn Easy Apply. Location: San Diego County, CA (Hybrid).",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-062",
+    "company": "Aon",
+    "role": "Project Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Merin, Aon requests feedback on your application experience.",
+    "notes": "Application received. Feedback survey requested for candidate experience improvement.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-063",
+    "company": "Insight Global",
+    "role": "Project Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Application received via Insight Global Careers portal.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-064",
+    "company": "Insight Global",
+    "role": "Project Manager - Lower Gwynedd, PA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role supporting pharmaceutical client in Spring House, PA. Lab automation initiative leadership.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-065",
+    "company": "Insight Global",
+    "role": "Transmission Project Manager - Cincinnati, OH",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Utilities company. Portfolio of transmission and substation projects ($100K to $25M).",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-066",
+    "company": "Insight Global",
+    "role": "Project Manager - Camden, NJ",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role supporting automotive client. Customer Experience Product Management team.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-067",
+    "company": "Insight Global",
+    "role": "Implementation Project Manager - Monroe, GA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. PMO Specialist supporting project governance and standards.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-068",
+    "company": "Insight Global",
+    "role": "Project Manager - Spring, TX",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Technical Project Manager for Security Response team. Pay range $27-37/hr.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-069",
+    "company": "Insight Global",
+    "role": "Junior Project Manager - San Ramon, CA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Supporting delivery of complex, multi-stakeholder projects in utilities environment.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-070",
+    "company": "Insight Global",
+    "role": "Project Coordinator - Coppell, TX",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Local government environment. Supporting technology and infrastructure initiatives.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-071",
+    "company": "Insight Global",
+    "role": "Infrastructure Project Manager - New York, NY",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Permanent role. Leading hospital in NYC. Digital transformation and Epic applications.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-072",
+    "company": "Insight Global",
+    "role": "Project Manager - Covington, LA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract-to-perm role. Sporting goods wholesaling company. PMO team in Operations Department.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-073",
+    "company": "Insight Global",
+    "role": "Project Manager - Beaverton, OR",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. ADT project coordination and management.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-074",
+    "company": "Insight Global",
+    "role": "Project Manager - Atlanta, GA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Senior Project Manager. Infrastructure-focused initiatives and server refresh project. Pay $50-60/hr.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-075",
+    "company": "Insight Global",
+    "role": "Project Manager - Philadelphia, PA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Permanent role. Software-driven initiatives. Partnership with internal technical and business teams.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-076",
+    "company": "Insight Global",
+    "role": "Project Manager - Vancouver, WA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Permanent role. Technology background required. Application Development, EDI, and Integration experience preferred.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-077",
+    "company": "Insight Global",
+    "role": "Project Manager - Hanover, MD",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Permanent role. Industrial automation company. Salary $90K-$115K + bonuses. Benefits: Medical, Dental, Vision, 401k.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-078",
+    "company": "Insight Global",
+    "role": "Project Manager - Miramar, FL",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Large-scale IT operational fleet projects. Preplanning stage oversight. Budget management experience required.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-079",
+    "company": "Insight Global",
+    "role": "Influencer Program Manager - Redmond, WA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Contract role. Minecraft influencer campaigns. Creator outreach and campaign execution.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-080",
+    "company": "Insight Global",
+    "role": "Senior Project Manager - Lynnwood, WA",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Thank You for Applying on Insight Global Careers",
+    "notes": "Permanent role. HVAC and piping industry. Industrial Group. Complex large-scale project leadership.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-081",
+    "company": "Meta",
+    "role": "Contracts & Sourcing Specialist II (Contract)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Your Meta Application Update",
+    "notes": "Applied via Meta CWx Direct-Sourcing on 2026-03-30.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-082",
+    "company": "Quest Diagnostics",
+    "role": "Project Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Confirm your identity for job Project Manager - 56096",
+    "notes": "Application submitted. Identity confirmation code required. Job ID: 56096.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-083",
+    "company": "ICU Medical",
+    "role": "Project Manager - Professional Services",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Your recent job application for Project Manager - Professional Services - 1140",
+    "notes": "Application received. Recruiting team will contact if profile matches requirements. Job ID: 1140.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-084",
+    "company": "TikTok",
+    "role": "TikTok Shop - Product Marketing Manager, Category Solutions",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-30",
+    "last_updated": "2026-03-30",
+    "subject": "Problem with your TikTok Shop - Product Marketing Manager, Category Solutions application",
+    "notes": "Application delivery issue reported. User should complete application on company website.",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
       }
     ]
   }

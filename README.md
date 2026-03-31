@@ -10,7 +10,7 @@ Apple Mail.app ──> AppleScript ──> Claude Code AI ──> Python
     (extract)       (raw text)      (parse & dedupe)      └──> Google Sheets
 ```
 
-1. **AppleScript** queries all connected Gmail accounts in Mail.app for job-related emails from the last 7 days (inbox + sent)
+1. **AppleScript** queries all connected Gmail accounts in Mail.app for job-related emails (inbox + sent)
 2. **Claude Code CLI** (`claude -p`) analyzes the raw emails with AI to extract structured data — company, role, status — and deduplicates multiple emails about the same application
 3. **Python** writes to both a local Excel file (`openpyxl`) and a Google Spreadsheet (`gspread`)
 
@@ -75,17 +75,20 @@ Applied -> Interview -> Offer -> Accepted
 
 ## Scheduled Automation
 
-A `launchd` agent runs the tracker **daily at 6:00 PM**.
+A `launchd` agent runs the tracker **twice daily at 9:00 AM and 9:00 PM**, checking the last 1 day of emails each time.
 
 - **Plist location:** `~/Library/LaunchAgents/com.merinpeter.jobtracker.plist`
-- If the laptop is asleep or closed at 6 PM, it runs automatically **when the laptop is next opened**
-- Logs are written to `~/Documents/Job Tracker/logs/`
+- If the laptop is asleep at the scheduled time, it runs automatically **when the laptop is next opened**
+- Logs are written to `~/Documents/Career/Job Tracker/logs/`
 
 ### Useful Commands
 
 ```bash
 # Run manually
-~/Documents/Job\ Tracker/run.sh
+~/Documents/Career/Job\ Tracker/run.sh
+
+# Run manually with custom lookback
+~/Documents/Career/Job\ Tracker/run.sh --days 3
 
 # Trigger the scheduled job immediately
 launchctl start com.merinpeter.jobtracker
@@ -94,7 +97,7 @@ launchctl start com.merinpeter.jobtracker
 launchctl list | grep jobtracker
 
 # View the latest run log
-ls -t ~/Documents/Job\ Tracker/logs/*.log | head -1 | xargs cat
+ls -t ~/Documents/Career/Job\ Tracker/logs/*.log | head -1 | xargs cat
 
 # Disable the schedule
 launchctl unload ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist
@@ -113,12 +116,14 @@ To add more keywords, edit `extract_emails.applescript`.
 
 ## Changing the Search Window
 
-The default search window is **7 days**. To change it, edit the first line in `extract_emails.applescript`:
+The default search window is **7 days**. Override it with the `--days` flag:
 
-```applescript
-set oneWeekAgo to (current date) - (7 * days)
--- Change 7 to any number of days, e.g., 30 for a month
+```bash
+./run.sh --days 3    # Look back 3 days
+./run.sh --days 30   # Look back a month
 ```
+
+The scheduled automation uses `--days 1` to check only the previous day's emails on each run.
 
 ## Setting Up on a New Mac
 
@@ -157,7 +162,7 @@ Verify with:
 ### Step 4: Clone the repository
 
 ```bash
-cd ~/Documents
+cd ~/Documents/Career
 git clone https://github.com/tmsbn/JobStatusTracker.git "Job Tracker"
 cd "Job Tracker"
 ```
@@ -200,7 +205,7 @@ If you want job data synced to a Google Spreadsheet:
    - Application type: **Desktop app**
    - Name: anything (e.g., "Job Tracker")
 5. Download the JSON file
-6. Save it as `~/Documents/Job Tracker/credentials.json`
+6. Save it as `~/Documents/Career/Job Tracker/credentials.json`
 7. Run the script once manually (`./run.sh`) — a browser window will open for Google sign-in
 8. After signing in, `token.json` is saved and all future runs are fully automatic
 
@@ -209,7 +214,7 @@ If you want job data synced to a Google Spreadsheet:
 ### Step 9: Run it
 
 ```bash
-cd ~/Documents/Job\ Tracker
+cd ~/Documents/Career/Job\ Tracker
 ./run.sh
 ```
 
@@ -229,37 +234,45 @@ Step 3/3: Updating Google Spreadsheet...
 ============================================
 ```
 
-### Step 10: Set up daily automation (optional)
+### Step 10: Set up twice-daily automation (optional)
 
-To have the tracker run automatically every day at 6:00 PM, create a `launchd` agent:
+To have the tracker run automatically at 9 AM and 9 PM, create a `launchd` agent:
 
 ```bash
-cat > ~/Library/LaunchAgents/com.jobtracker.plist << EOF
+cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.jobtracker</string>
+    <string>com.merinpeter.jobtracker</string>
 
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>$HOME/Documents/Job Tracker/run_scheduled.sh</string>
+        <string>$HOME/Documents/Career/Job Tracker/run_scheduled.sh</string>
     </array>
 
     <key>StartCalendarInterval</key>
-    <dict>
-        <key>Hour</key>
-        <integer>18</integer>
-        <key>Minute</key>
-        <integer>0</integer>
-    </dict>
+    <array>
+        <dict>
+            <key>Hour</key>
+            <integer>9</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <dict>
+            <key>Hour</key>
+            <integer>21</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
 
     <key>StandardOutPath</key>
-    <string>$HOME/Documents/Job Tracker/logs/launchd_stdout.log</string>
+    <string>$HOME/Documents/Career/Job Tracker/logs/launchd_stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>$HOME/Documents/Job Tracker/logs/launchd_stderr.log</string>
+    <string>$HOME/Documents/Career/Job Tracker/logs/launchd_stderr.log</string>
 </dict>
 </plist>
 EOF
@@ -270,10 +283,10 @@ EOF
 Then load the agent:
 
 ```bash
-launchctl load ~/Library/LaunchAgents/com.jobtracker.plist
+launchctl load ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist
 ```
 
-If the Mac is asleep at 6 PM, the job will run automatically when the laptop is next opened.
+If the Mac is asleep at the scheduled time, the job will run automatically when the laptop is next opened.
 
 **Note:** The first run must be manual (Step 9) so you can complete the Google sign-in and approve the Mail.app automation prompt. After that, scheduled runs work unattended.
 

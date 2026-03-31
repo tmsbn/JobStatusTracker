@@ -6,7 +6,7 @@
 # Persistent state is stored in job_data.json — each application gets a unique
 # Job ID that is preserved across runs. AI detects status changes from new emails.
 #
-# Usage: ./run.sh
+# Usage: ./run.sh [--days N]
 
 set -euo pipefail
 
@@ -14,6 +14,22 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VENV_DIR="$SCRIPT_DIR/.venv"
 JOB_DATA_FILE="$SCRIPT_DIR/job_data.json"
 TEMP_DIR=$(mktemp -d)
+
+# ── Parse arguments ──────────────────────────────────────────
+DAYS_BACK=7
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --days)
+            DAYS_BACK="$2"
+            shift 2
+            ;;
+        *)
+            echo "Usage: ./run.sh [--days N]"
+            echo "  --days N   Look back N days for emails (default: 7)"
+            exit 1
+            ;;
+    esac
+done
 
 # Cleanup on exit
 cleanup() {
@@ -46,23 +62,22 @@ fi
 echo ""
 
 # ── Step 1: Extract emails from Mail.app ──────────────────────
-echo "Step 1/3: Extracting job-related emails from Mail.app (last 7 days)..."
+echo "Step 1/3: Extracting job-related emails from Mail.app (last $DAYS_BACK days)..."
 echo "  (This may take a moment depending on mailbox size)"
 
-RAW_OUTPUT=$(osascript "$SCRIPT_DIR/extract_emails.applescript" 2>/dev/null) || {
+RAW_OUTPUT=$(osascript "$SCRIPT_DIR/extract_emails.applescript" "$DAYS_BACK" 2>/dev/null) || {
     echo "Error: Failed to run AppleScript. Make sure Mail.app has permission."
     echo "Go to: System Settings > Privacy & Security > Automation > Terminal > Mail"
     exit 1
 }
 
 if [ "$RAW_OUTPUT" = "NO_EMAILS_FOUND" ] || [ -z "$RAW_OUTPUT" ]; then
-    echo "  No new job-related emails found in the last 7 days."
+    echo "  No new job-related emails found in the last $DAYS_BACK days."
     if [ -f "$JOB_DATA_FILE" ]; then
         echo "  Re-exporting existing data to Google Sheets..."
-        source "$VENV_DIR/bin/activate"
         GSHEET_CREDS="$SCRIPT_DIR/credentials.json"
         if [ -f "$GSHEET_CREDS" ]; then
-            python3 "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1
+            "$VENV_DIR/bin/python3" "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1
         fi
     fi
     exit 0
@@ -141,7 +156,7 @@ A generic confirmation = Applied
 PROMPT_DELIM
 
 # Pipe prompt to Claude
-CLAUDE_OUTPUT=$(claude -p "$(cat "$TEMP_DIR/prompt.txt")" 2>/dev/null) || {
+CLAUDE_OUTPUT=$(claude -p --model claude-haiku-4-5-20251001 "$(cat "$TEMP_DIR/prompt.txt")" 2>/dev/null) || {
     echo "Error: Failed to run Claude. Make sure 'claude' CLI is available."
     echo "Check: which claude"
     exit 1
@@ -211,8 +226,7 @@ echo ""
 # ── Step 3: Write to Google Sheets ────────────────────────────
 echo "Step 3/3: Updating Google Spreadsheet..."
 
-source "$VENV_DIR/bin/activate"
-python3 "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1 || {
+"$VENV_DIR/bin/python3" "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1 || {
     echo "  Error: Google Sheets update failed."
     exit 1
 }

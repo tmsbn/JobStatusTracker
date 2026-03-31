@@ -1,9 +1,15 @@
 -- extract_emails.applescript
--- Searches all Mail.app accounts for job-related emails from the last 7 days
+-- Searches all Mail.app accounts for job-related emails from the last N days
 -- Outputs structured text for AI processing
+-- Usage: osascript extract_emails.applescript [days_back]
 
-on run
-	set oneWeekAgo to (current date) - (7 * days)
+on run argv
+	if (count of argv) > 0 then
+		set daysBack to (item 1 of argv) as integer
+	else
+		set daysBack to 7
+	end if
+	set cutoffDate to (current date) - (daysBack * days)
 	set output to ""
 	set emailCount to 0
 
@@ -15,7 +21,7 @@ on run
 				-- Search INBOX
 				try
 					set inboxMbox to mailbox "INBOX" of acct
-					set recentMsgs to (every message of inboxMbox whose date received > oneWeekAgo)
+					set recentMsgs to (every message of inboxMbox whose date received > cutoffDate)
 
 					repeat with msg in recentMsgs
 						try
@@ -59,7 +65,7 @@ on run
 				-- Search Sent mailbox
 				try
 					set sentMbox to sent mailbox of acct
-					set recentSent to (every message of sentMbox whose date received > oneWeekAgo)
+					set recentSent to (every message of sentMbox whose date received > cutoffDate)
 
 					repeat with msg in recentSent
 						try
