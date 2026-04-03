@@ -102,27 +102,6 @@ def get_or_create_spreadsheet(gc):
     return spreadsheet
 
 
-def read_manual_entries(ws, automated_job_ids):
-    """Read rows from the sheet that were manually added (not in job_data.json).
-
-    A row is considered manual if its Job ID is not in the automated set
-    and it has at least a company or role filled in.
-    """
-    manual_rows = []
-    try:
-        all_rows = ws.get_all_values()
-        if len(all_rows) <= 1:
-            return manual_rows
-        for row in all_rows[1:]:  # skip header
-            job_id = row[0].strip() if row else ""
-            has_content = any(cell.strip() for cell in row[1:4])  # company, role, or status
-            if has_content and job_id not in automated_job_ids:
-                manual_rows.append(row)
-    except Exception:
-        pass
-    return manual_rows
-
-
 def write_gsheet(data, creds):
     gc = gspread.authorize(creds)
     spreadsheet = get_or_create_spreadsheet(gc)
@@ -133,18 +112,13 @@ def write_gsheet(data, creds):
     except Exception:
         pass
 
-    # Collect automated Job IDs so we can identify manual entries
-    automated_job_ids = {entry.get("job_id", "") for entry in data}
-
     # ── Job Applications sheet ────────────────────────────────
     try:
         ws = spreadsheet.worksheet("Job Applications")
-        manual_entries = read_manual_entries(ws, automated_job_ids)
         ws.clear()
     except gspread.WorksheetNotFound:
         ws = spreadsheet.sheet1
         ws.update_title("Job Applications")
-        manual_entries = []
 
     # Build all rows
     rows = [HEADERS]
@@ -170,15 +144,6 @@ def write_gsheet(data, creds):
             entry.get("notes", ""),
             job_url,
         ])
-
-    # Append manual entries (rows added by hand in the sheet, not in job_data.json)
-    for row in manual_entries:
-        # Pad or trim to match column count
-        padded = (row + [""] * len(HEADERS))[:len(HEADERS)]
-        rows.append(padded)
-
-    if manual_entries:
-        print(f"  Preserved {len(manual_entries)} manually added entries.")
 
     # Write all data at once
     ws.update(rows, value_input_option="USER_ENTERED")
@@ -215,29 +180,44 @@ def write_gsheet(data, creds):
             }
         })
 
-    # Status column color coding
-    for row_idx, entry in enumerate(data, 2):
-        status = entry.get("status", "Other")
-        color = get_status_color(status)
-        requests_list.append({
-            "repeatCell": {
-                "range": {
-                    "sheetId": sheet_id,
-                    "startRowIndex": row_idx - 1,
-                    "endRowIndex": row_idx,
-                    "startColumnIndex": 3,
-                    "endColumnIndex": 4
-                },
-                "cell": {
-                    "userEnteredFormat": {
-                        "backgroundColor": color,
-                        "textFormat": {"bold": True},
-                        "horizontalAlignment": "CENTER"
-                    }
-                },
-                "fields": "userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)"
-            }
-        })
+    # Status column color coding — group contiguous rows by status for fewer requests
+    if data:
+        # Build list of (row_index, status) — row_index is 1-based sheet row
+        row_statuses = [(i + 1, entry.get("status", "Other")) for i, entry in enumerate(data)]
+
+        # Find contiguous runs of the same status
+        runs = []
+        run_start, run_status = row_statuses[0]
+        run_end = run_start
+        for row_idx, status in row_statuses[1:]:
+            if status == run_status:
+                run_end = row_idx
+            else:
+                runs.append((run_start, run_end, run_status))
+                run_start, run_status, run_end = row_idx, status, row_idx
+        runs.append((run_start, run_end, run_status))
+
+        for start_row, end_row, status in runs:
+            color = get_status_color(status)
+            requests_list.append({
+                "repeatCell": {
+                    "range": {
+                        "sheetId": sheet_id,
+                        "startRowIndex": start_row,
+                        "endRowIndex": end_row + 1,
+                        "startColumnIndex": 3,
+                        "endColumnIndex": 4
+                    },
+                    "cell": {
+                        "userEnteredFormat": {
+                            "backgroundColor": color,
+                            "textFormat": {"bold": True},
+                            "horizontalAlignment": "CENTER"
+                        }
+                    },
+                    "fields": "userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)"
+                }
+            })
 
     # Job ID column: bold + centered
     if len(data) > 0:

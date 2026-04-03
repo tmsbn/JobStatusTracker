@@ -1,26 +1,31 @@
 # Job Application Tracker
 
-An automated system that extracts job application emails from Apple Mail, uses Claude AI to intelligently parse and deduplicate them, and outputs to both a formatted Excel spreadsheet and a Google Spreadsheet with persistent Job ID tracking.
+An automated system that extracts job application emails from Apple Mail, uses Claude AI to parse them, matches them against a SQLite database, and syncs results to Google Sheets.
 
 ## How It Works
 
 ```
-                                                          ┌──> Excel (.xlsx)
-Apple Mail.app ──> AppleScript ──> Claude Code AI ──> Python
-    (extract)       (raw text)      (parse & dedupe)      └──> Google Sheets
+Apple Mail.app ──> AppleScript ──> Claude AI ──> SQLite ──> Google Sheets
+   (extract)       (raw text)     (parse only)   (match     (read-only
+                                                  & store)    display)
 ```
 
-1. **AppleScript** queries all connected Gmail accounts in Mail.app for job-related emails (inbox + sent)
-2. **Claude Code CLI** (`claude -p`) analyzes the raw emails with AI to extract structured data — company, role, status — and deduplicates multiple emails about the same application
-3. **Python** writes to both a local Excel file (`openpyxl`) and a Google Spreadsheet (`gspread`)
+1. **AppleScript** queries all connected Mail.app accounts for job-related emails (inbox + sent)
+2. **Claude AI** (`claude -p`) extracts structured data from each email — company, role, status, dates. It only sees raw emails, not existing job data.
+3. **Python** (`job_db.py match`) matches extracted entries against the SQLite database by company + role, handles status progression, and assigns Job IDs
+4. **Google Sheets** is updated as a read-only view of the database
+
+### Why this architecture?
+
+Claude's prompt size stays **constant** regardless of how many jobs are tracked. At 500+ jobs, the old approach of sending the entire database to Claude would be unsustainable. Instead, Claude only extracts data from emails (~2,000 tokens), and Python handles all matching deterministically.
 
 ## Job ID System
 
 Every job application is assigned a unique, persistent ID (`JOB-001`, `JOB-002`, ...).
 
-- IDs are stored in `job_data.json` and preserved across runs
-- When the script runs again, Claude AI matches new emails to existing Job IDs by company + role
-- Status is updated if it has changed (e.g., Applied -> Interview -> Offer)
+- IDs are stored in a SQLite database (`job_tracker.db`) and preserved across runs
+- Python matches new emails to existing jobs by company + role
+- Status is never downgraded (e.g., Interview won't go back to Applied)
 - A full **status history** is maintained for each application, tracking every transition with dates
 
 ### Status Progression
@@ -38,15 +43,17 @@ Applied -> Interview -> Offer -> Accepted
 |------|-------------|
 | `run.sh` | Main orchestration script — runs the full pipeline |
 | `run_scheduled.sh` | Wrapper for launchd — sets up PATH and logging |
+| `job_db.py` | SQLite database layer — handles init, migration, matching, and export |
 | `extract_emails.applescript` | Searches Mail.app for job-related emails (last 7 days) |
 | `write_excel.py` | Writes structured JSON to formatted Excel with color-coded statuses |
-| `write_gsheet.py` | Writes structured JSON to Google Spreadsheet with formatting |
+| `write_gsheet.py` | Writes job data to Google Spreadsheet (read-only view of SQLite) |
+| `job_tracker.db` | SQLite database — single source of truth (auto-generated) |
+| `job_data.json` | JSON export of database for backward compatibility (auto-generated) |
 | `credentials.json` | Google OAuth2 client credentials (you provide this — see setup below) |
 | `token.json` | Google auth token (auto-generated after first login) |
 | `.gsheet_id` | Stores the Google Spreadsheet ID for reuse (auto-generated) |
-| `job_data.json` | Persistent database of all tracked applications (auto-generated) |
 | `logs/` | Run logs with timestamps (last 30 retained) |
-| `.venv/` | Python virtual environment with `openpyxl` |
+| `.venv/` | Python virtual environment |
 
 ## Output
 
@@ -78,6 +85,7 @@ Applied -> Interview -> Offer -> Accepted
 A `launchd` agent runs the tracker **twice daily at 9:00 AM and 9:00 PM**, checking the last 1 day of emails each time.
 
 - **Plist location:** `~/Library/LaunchAgents/com.merinpeter.jobtracker.plist`
+- **App bundle:** `~/Applications/JobTracker.app` — a wrapper that must have **Full Disk Access** (System Settings > Privacy & Security > Full Disk Access) so launchd can access files in `~/Documents`
 - If the laptop is asleep at the scheduled time, it runs automatically **when the laptop is next opened**
 - Logs are written to `~/Documents/Career/Job Tracker/logs/`
 
@@ -224,10 +232,17 @@ On a successful run, you'll see output like:
 ============================================
   Job Application Tracker
 ============================================
+  Loaded 122 existing job applications from database.
 
 Step 1/3: Extracting job-related emails from Mail.app (last 7 days)...
-Step 2/3: Processing emails with Claude AI...
+  Found 28 job-related emails.
+
+Step 2/3: Extracting job info with Claude AI...
+  Extracted 11 job-related entries from emails.
+  Matched 6 existing jobs, added 5 new jobs.
+
 Step 3/3: Updating Google Spreadsheet...
+  Saved 127 job applications to Google Sheets
 
 ============================================
   Done! Your job tracker is ready.
@@ -236,10 +251,61 @@ Step 3/3: Updating Google Spreadsheet...
 
 ### Step 10: Set up twice-daily automation (optional)
 
-To have the tracker run automatically at 9 AM and 9 PM, create a `launchd` agent:
+To have the tracker run automatically at 9 AM and 9 PM:
+
+**1. Create the app bundle wrapper** (needed so launchd can access `~/Documents`):
 
 ```bash
-cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << EOF
+mkdir -p ~/Applications/JobTracker.app/Contents/MacOS
+
+# Create Info.plist
+cat > ~/Applications/JobTracker.app/Contents/Info.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.merinpeter.jobtracker</string>
+    <key>CFBundleName</key>
+    <string>JobTracker</string>
+    <key>CFBundleExecutable</key>
+    <string>job-tracker-runner</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>LSBackgroundOnly</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+# Create and compile the native runner (shell scripts don't inherit app bundle FDA)
+cat > /tmp/runner.c << 'EOF'
+#include <stdlib.h>
+#include <unistd.h>
+int main(void) {
+    setenv("PATH", "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin", 1);
+    setenv("HOME", "/Users/merinpeter", 1);
+    char *args[] = {"/bin/bash", "/Users/merinpeter/Documents/Career/Job Tracker/run_scheduled.sh", NULL};
+    execv("/bin/bash", args);
+    return 1;
+}
+EOF
+cc -o ~/Applications/JobTracker.app/Contents/MacOS/job-tracker-runner /tmp/runner.c
+rm /tmp/runner.c
+```
+
+**Important:** Update the `HOME` path and script path in `runner.c` to match your username. Also update `run_scheduled.sh` line 5 with your home directory.
+
+**2. Grant Full Disk Access** to the app bundle:
+
+1. Open **System Settings > Privacy & Security > Full Disk Access**
+2. Click **+**, press **Cmd+Shift+G**, type `~/Applications`
+3. Select **JobTracker.app** and add it
+
+**3. Create the launchd agent:**
+
+```bash
+cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -249,8 +315,7 @@ cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << EOF
 
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/bash</string>
-        <string>$HOME/Documents/Career/Job Tracker/run_scheduled.sh</string>
+        <string>/Users/merinpeter/Applications/JobTracker.app/Contents/MacOS/job-tracker-runner</string>
     </array>
 
     <key>StartCalendarInterval</key>
@@ -270,17 +335,15 @@ cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << EOF
     </array>
 
     <key>StandardOutPath</key>
-    <string>$HOME/Documents/Career/Job Tracker/logs/launchd_stdout.log</string>
+    <string>/Users/merinpeter/Documents/Career/Job Tracker/logs/launchd_stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>$HOME/Documents/Career/Job Tracker/logs/launchd_stderr.log</string>
+    <string>/Users/merinpeter/Documents/Career/Job Tracker/logs/launchd_stderr.log</string>
 </dict>
 </plist>
 EOF
 ```
 
-**Important:** Also edit `run_scheduled.sh` and update the `HOME` variable on line 5 to your own home directory path (e.g., `/Users/yourname`).
-
-Then load the agent:
+**4. Load the agent:**
 
 ```bash
 launchctl load ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist

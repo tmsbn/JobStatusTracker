@@ -3,3 +3,5 @@
 credentials.json
 token.json
 .gsheet_id
+job_tracker.db
+job_tracker.db.bak
