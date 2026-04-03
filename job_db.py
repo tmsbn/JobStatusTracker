@@ -4,10 +4,8 @@
 Usage:
     job_db.py init
     job_db.py migrate --from <json_file>
-    job_db.py prematch <raw_emails_file>
-    job_db.py upsert <claude_output_json>
-    job_db.py export [--json]
-    job_db.py next-id
+    job_db.py match <extracted_json>
+    job_db.py export
     job_db.py count
 """
 
@@ -18,8 +16,6 @@ import re
 import shutil
 import sqlite3
 import sys
-from collections import defaultdict
-from email.utils import parseaddr
 
 DB_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(DB_DIR, "job_tracker.db")
@@ -170,220 +166,6 @@ def cmd_migrate(args):
     print(f"Migrated {job_count} jobs, {history_count} status history entries, {alias_count} company aliases.")
 
 
-# ── prematch ────────────────────────────────────────────────────
-
-def parse_raw_emails(filepath):
-    """Parse the ===EMAIL_START===/===EMAIL_END=== delimited email file."""
-    with open(filepath) as f:
-        text = f.read()
-
-    emails = []
-    blocks = re.split(r'===EMAIL_START===', text)
-    for block in blocks[1:]:  # skip text before first marker
-        end_idx = block.find('===EMAIL_END===')
-        if end_idx == -1:
-            continue
-        content = block[:end_idx].strip()
-        email = {}
-        for line in content.split('\n'):
-            if ':' in line:
-                key, _, val = line.partition(':')
-                key = key.strip().lower()
-                val = val.strip()
-                if key in ('from', 'to', 'subject', 'date', 'body', 'account', 'direction'):
-                    if key == 'body':
-                        # Body may be multiline — capture rest
-                        body_start = content.find('Body:')
-                        if body_start != -1:
-                            email['body'] = content[body_start + 5:].strip()
-                        break
-                    email[key] = val
-        emails.append(email)
-    return emails
-
-
-def extract_domains_and_keywords(emails):
-    """Extract company-identifying signals from emails."""
-    domains = set()
-    keywords = set()
-
-    for email in emails:
-        # Extract domain from From address
-        from_addr = email.get('from', '')
-        _, addr = parseaddr(from_addr)
-        if not addr and '<' in from_addr:
-            match = re.search(r'<([^>]+)>', from_addr)
-            if match:
-                addr = match.group(1)
-        if '@' in addr:
-            domain = addr.split('@')[1].lower()
-            domains.add(domain)
-            # Also add the domain without TLD: "meta.com" -> "meta"
-            domain_name = domain.split('.')[0]
-            if domain_name not in ('gmail', 'yahoo', 'hotmail', 'outlook', 'icloud',
-                                   'mail', 'noreply', 'no-reply', 'email', 'notifications'):
-                domains.add(domain_name)
-
-        # Extract domain from To address (for sent emails)
-        to_addr = email.get('to', '')
-        for addr_part in to_addr.split(','):
-            _, addr = parseaddr(addr_part.strip())
-            if '@' in addr:
-                domain = addr.split('@')[1].lower()
-                domains.add(domain)
-                domain_name = domain.split('.')[0]
-                if domain_name not in ('gmail', 'yahoo', 'hotmail', 'outlook', 'icloud',
-                                       'mail', 'noreply', 'no-reply', 'email', 'notifications'):
-                    domains.add(domain_name)
-
-        # Extract potential company names from subject
-        subject = email.get('subject', '')
-        # Look for capitalized words/phrases that might be company names
-        words = subject.split()
-        for word in words:
-            clean = re.sub(r'[^A-Za-z0-9]', '', word)
-            if clean and len(clean) > 2:
-                keywords.add(clean.lower())
-
-    return domains, keywords
-
-
-def cmd_prematch(args):
-    emails = parse_raw_emails(args.emails_file)
-    if not emails:
-        print("[]")
-        return
-
-    domains, keywords = extract_domains_and_keywords(emails)
-
-    conn = get_conn()
-
-    matched_companies = set()
-
-    # 1. Look up company_aliases table for domain matches
-    if domains:
-        placeholders = ','.join('?' * len(domains))
-        rows = conn.execute(
-            f"SELECT DISTINCT company FROM company_aliases WHERE alias IN ({placeholders})",
-            list(domains),
-        ).fetchall()
-        for row in rows:
-            matched_companies.add(row['company'])
-
-    # 2. Direct company name match from keywords
-    all_companies = [r['company'] for r in conn.execute("SELECT DISTINCT company FROM jobs").fetchall()]
-    for company in all_companies:
-        company_lower = company.lower()
-        for kw in keywords | domains:
-            if kw in company_lower or company_lower in kw:
-                matched_companies.add(company)
-                break
-
-    # 3. Safety net: include jobs updated in the last 14 days
-    recent_rows = conn.execute(
-        "SELECT DISTINCT company FROM jobs WHERE last_updated >= date('now', '-14 days')"
-    ).fetchall()
-    for row in recent_rows:
-        matched_companies.add(row['company'])
-
-    # Query matched jobs
-    if matched_companies:
-        placeholders = ','.join('?' * len(matched_companies))
-        job_rows = conn.execute(
-            f"SELECT * FROM jobs WHERE company IN ({placeholders}) ORDER BY last_updated DESC",
-            list(matched_companies),
-        ).fetchall()
-    else:
-        job_rows = []
-
-    # Build output with status_history
-    result = []
-    for row in job_rows:
-        job = dict(row)
-        history = conn.execute(
-            "SELECT status, date FROM status_history WHERE job_id = ? ORDER BY id",
-            (row['job_id'],),
-        ).fetchall()
-        job['status_history'] = [dict(h) for h in history]
-        result.append(job)
-
-    conn.close()
-
-    print(json.dumps(result, indent=2))
-    print(f"Pre-matched {len(result)} jobs from {len(matched_companies)} companies.", file=sys.stderr)
-
-
-# ── upsert ──────────────────────────────────────────────────────
-
-def cmd_upsert(args):
-    json_file = args.claude_output
-    if not os.path.exists(json_file):
-        print(f"Error: {json_file} not found.", file=sys.stderr)
-        sys.exit(1)
-
-    with open(json_file) as f:
-        data = json.load(f)
-
-    if not isinstance(data, list):
-        print("Error: Expected JSON array.", file=sys.stderr)
-        sys.exit(1)
-
-    # Backup DB before mutation
-    if os.path.exists(DB_PATH):
-        shutil.copy2(DB_PATH, DB_PATH + ".bak")
-
-    conn = get_conn()
-    updated = 0
-    inserted = 0
-
-    with conn:
-        for entry in data:
-            job_id = entry.get("job_id", "")
-            company = entry.get("company", "Unknown")
-
-            existing = conn.execute("SELECT job_id FROM jobs WHERE job_id = ?", (job_id,)).fetchone()
-
-            conn.execute(
-                """INSERT OR REPLACE INTO jobs
-                   (job_id, company, role, job_url, status, date, last_updated, subject, notes)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                (
-                    job_id,
-                    company,
-                    entry.get("role", "Unknown Role"),
-                    entry.get("job_url", ""),
-                    entry.get("status", "Other"),
-                    entry.get("date", ""),
-                    entry.get("last_updated", entry.get("date", "")),
-                    entry.get("subject", ""),
-                    entry.get("notes", ""),
-                ),
-            )
-
-            if existing:
-                updated += 1
-            else:
-                inserted += 1
-
-            # Replace status_history for this job
-            conn.execute("DELETE FROM status_history WHERE job_id = ?", (job_id,))
-            for sh in entry.get("status_history", []):
-                conn.execute(
-                    "INSERT INTO status_history (job_id, status, date) VALUES (?, ?, ?)",
-                    (job_id, sh.get("status", ""), sh.get("date", "")),
-                )
-
-            # Update company aliases
-            for alias in generate_aliases(company):
-                conn.execute(
-                    "INSERT OR IGNORE INTO company_aliases (alias, company) VALUES (?, ?)",
-                    (alias, company),
-                )
-
-    conn.close()
-    print(f"Upserted: {inserted} new, {updated} updated.")
-
-
 # ── match ───────────────────────────────────────────────────────
 
 # Status progression order — higher index = further along
@@ -492,7 +274,6 @@ def cmd_match(args):
 
     matched = 0
     inserted = 0
-    skipped = 0
 
     with conn:
         for entry in data:
@@ -600,23 +381,6 @@ def cmd_export(_args):
     print(json.dumps(result, indent=2))
 
 
-# ── next-id ─────────────────────────────────────────────────────
-
-def cmd_next_id(_args):
-    conn = get_conn()
-    row = conn.execute(
-        "SELECT job_id FROM jobs WHERE job_id LIKE 'JOB-%' ORDER BY CAST(SUBSTR(job_id, 5) AS INTEGER) DESC LIMIT 1"
-    ).fetchone()
-    conn.close()
-
-    if row:
-        match = re.search(r'JOB-(\d+)', row['job_id'])
-        if match:
-            print(int(match.group(1)) + 1)
-            return
-    print(1)
-
-
 # ── count ───────────────────────────────────────────────────────
 
 def cmd_count(_args):
@@ -637,17 +401,10 @@ def main():
     migrate_p = sub.add_parser("migrate", help="Migrate from job_data.json")
     migrate_p.add_argument("--from", dest="source", required=True, help="Path to job_data.json")
 
-    prematch_p = sub.add_parser("prematch", help="Pre-match emails to existing jobs")
-    prematch_p.add_argument("emails_file", help="Path to raw emails file")
-
-    upsert_p = sub.add_parser("upsert", help="Upsert Claude output into database")
-    upsert_p.add_argument("claude_output", help="Path to Claude output JSON")
-
     match_p = sub.add_parser("match", help="Match extracted entries to existing jobs")
     match_p.add_argument("extracted_json", help="Path to Claude extracted JSON")
 
     sub.add_parser("export", help="Export database as JSON")
-    sub.add_parser("next-id", help="Print next available job ID number")
     sub.add_parser("count", help="Print total job count")
 
     args = parser.parse_args()
@@ -659,11 +416,8 @@ def main():
     commands = {
         "init": cmd_init,
         "migrate": cmd_migrate,
-        "prematch": cmd_prematch,
-        "upsert": cmd_upsert,
         "match": cmd_match,
         "export": cmd_export,
-        "next-id": cmd_next_id,
         "count": cmd_count,
     }
 
