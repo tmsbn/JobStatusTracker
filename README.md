@@ -263,7 +263,7 @@ Applied -> Interview -> Offer -> Accepted
 
 ## Scheduled Automation
 
-A `launchd` agent runs the tracker **twice daily at 9:00 AM and 9:00 PM**, checking the last 1 day of emails each time.
+A `launchd` agent runs the tracker **three times daily at 9:00 AM, 3:00 PM, and 9:00 PM**, checking the last 1 day of emails each time.
 
 - **Plist location:** `~/Library/LaunchAgents/com.merinpeter.jobtracker.plist`
 - **App bundle:** `~/Applications/JobTracker.app` — a wrapper that must have **Full Disk Access** (System Settings > Privacy & Security > Full Disk Access) so launchd can access files in `~/Documents`
@@ -439,9 +439,9 @@ Step 4/4: Updating Google Spreadsheet...
 ============================================
 ```
 
-### Step 10: Set up twice-daily automation (optional)
+### Step 10: Set up thrice-daily automation (optional)
 
-To have the tracker run automatically at 9 AM and 9 PM:
+To have the tracker run automatically at 9 AM, 3 PM, and 9 PM:
 
 **1. Create the app bundle wrapper** (needed so launchd can access `~/Documents`):
 
@@ -513,6 +513,12 @@ cat > ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist << 'EOF'
         <dict>
             <key>Hour</key>
             <integer>9</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <dict>
+            <key>Hour</key>
+            <integer>15</integer>
             <key>Minute</key>
             <integer>0</integer>
         </dict>
