@@ -10,12 +10,14 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
 import shutil
 import sqlite3
 import sys
+from datetime import datetime, timedelta
 
 DB_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(DB_DIR, "job_tracker.db")
@@ -26,6 +28,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     company      TEXT NOT NULL,
     role         TEXT NOT NULL DEFAULT 'Unknown Role',
     job_url      TEXT DEFAULT '',
+    source       TEXT DEFAULT '',
     status       TEXT NOT NULL DEFAULT 'Other',
     date         TEXT NOT NULL,
     last_updated TEXT NOT NULL,
@@ -43,6 +46,11 @@ CREATE TABLE IF NOT EXISTS status_history (
 CREATE TABLE IF NOT EXISTS company_aliases (
     alias   TEXT PRIMARY KEY,
     company TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS processed_emails (
+    email_hash TEXT PRIMARY KEY,
+    processed_at TEXT NOT NULL
 );
 
 CREATE INDEX IF NOT EXISTS idx_jobs_company ON jobs(company COLLATE NOCASE);
@@ -65,6 +73,12 @@ def get_conn():
 def cmd_init(_args):
     conn = get_conn()
     conn.executescript(SCHEMA)
+    # Migrate existing databases: add columns that may not exist yet
+    for col, default in [("source", "''")]:
+        try:
+            conn.execute(f"ALTER TABLE jobs ADD COLUMN {col} TEXT DEFAULT {default}")
+        except sqlite3.OperationalError:
+            pass  # Column already exists
     conn.close()
     print("Database initialized.")
 
@@ -124,13 +138,14 @@ def cmd_migrate(args):
 
             conn.execute(
                 """INSERT OR REPLACE INTO jobs
-                   (job_id, company, role, job_url, status, date, last_updated, subject, notes)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                   (job_id, company, role, job_url, source, status, date, last_updated, subject, notes)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                 (
                     job_id,
                     company,
                     entry.get("role", "Unknown Role"),
                     entry.get("job_url", ""),
+                    entry.get("source", ""),
                     entry.get("status", "Other"),
                     entry.get("date", ""),
                     entry.get("last_updated", entry.get("date", "")),
@@ -176,6 +191,7 @@ STATUS_ORDER = {
     "Offer": 3,
     "Accepted": 4,
     "Rejected": 5,
+    "No Response": 6,
     "Other": -1,
 }
 
@@ -262,6 +278,11 @@ def cmd_match(args):
 
     conn = get_conn()
 
+    # Every insert/update in this run gets tagged with today's date so
+    # `last_updated` reflects when the tracker actually touched the record,
+    # not the date of the underlying email.
+    today = datetime.now().strftime("%Y-%m-%d")
+
     # Get next available job ID
     row = conn.execute(
         "SELECT job_id FROM jobs WHERE job_id LIKE 'JOB-%' ORDER BY CAST(SUBSTR(job_id, 5) AS INTEGER) DESC LIMIT 1"
@@ -284,6 +305,7 @@ def cmd_match(args):
             subject = entry.get("subject", "")
             notes = entry.get("notes", "")
             job_url = entry.get("job_url", "")
+            source = entry.get("source", "")
 
             existing = find_matching_job(conn, company, role)
 
@@ -301,9 +323,8 @@ def cmd_match(args):
                 else:
                     final_status = old_status
 
-                # Update last_updated if this email is newer
-                old_updated = existing['last_updated'] or ""
-                final_updated = max(old_updated, new_date) if new_date else old_updated
+                # last_updated = when the tracker touched the row (today).
+                final_updated = today
 
                 # Append notes
                 old_notes = existing['notes'] or ""
@@ -312,14 +333,15 @@ def cmd_match(args):
                 else:
                     final_notes = old_notes
 
-                # Update job_url if we didn't have one
+                # Update job_url and source if we didn't have them
                 final_url = existing['job_url'] or job_url
+                final_source = existing['source'] or source
 
                 conn.execute(
-                    """UPDATE jobs SET status=?, last_updated=?, subject=?, notes=?, job_url=?
+                    """UPDATE jobs SET status=?, last_updated=?, subject=?, notes=?, job_url=?, source=?
                        WHERE job_id=?""",
                     (final_status, final_updated, subject or existing['subject'],
-                     final_notes, final_url, existing['job_id']),
+                     final_notes, final_url, final_source, existing['job_id']),
                 )
 
                 # Add status history entry if status changed
@@ -337,10 +359,10 @@ def cmd_match(args):
 
                 conn.execute(
                     """INSERT INTO jobs
-                       (job_id, company, role, job_url, status, date, last_updated, subject, notes)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-                    (job_id, company, role, job_url, new_status,
-                     new_date, new_date, subject, notes),
+                       (job_id, company, role, job_url, source, status, date, last_updated, subject, notes)
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (job_id, company, role, job_url, source, new_status,
+                     new_date, today, subject, notes),
                 )
 
                 conn.execute(
@@ -390,6 +412,141 @@ def cmd_count(_args):
     print(row['cnt'])
 
 
+# ── dedup ──────────────────────────────────────────────────────
+
+def parse_raw_emails(text):
+    """Parse raw email text into individual email blocks."""
+    emails = []
+    blocks = text.split("===EMAIL_START===")
+    for block in blocks:
+        if "===EMAIL_END===" not in block:
+            continue
+        content = block.split("===EMAIL_END===")[0].strip()
+        if content:
+            emails.append(content)
+    return emails
+
+
+def hash_email(email_text):
+    """Generate a stable hash from an email block's key fields."""
+    subject = ""
+    sender = ""
+    date = ""
+    for line in email_text.split("\n"):
+        if line.startswith("Subject: "):
+            subject = line[9:].strip()
+        elif line.startswith("From: "):
+            sender = line[6:].strip()
+        elif line.startswith("Date: "):
+            date = line[6:].strip()
+    key = f"{subject}|{sender}|{date}"
+    return hashlib.sha256(key.encode()).hexdigest()
+
+
+def cmd_dedup(args):
+    """Filter out already-processed emails. Outputs only new emails to stdout."""
+    raw_file = args.raw_file
+    if not os.path.exists(raw_file):
+        print(f"Error: {raw_file} not found.", file=sys.stderr)
+        sys.exit(1)
+
+    with open(raw_file) as f:
+        text = f.read()
+
+    emails = parse_raw_emails(text)
+    if not emails:
+        print("NO_NEW_EMAILS", end="")
+        return
+
+    conn = get_conn()
+    conn.executescript(SCHEMA)
+
+    new_emails = []
+    for email_text in emails:
+        h = hash_email(email_text)
+        row = conn.execute("SELECT 1 FROM processed_emails WHERE email_hash = ?", (h,)).fetchone()
+        if not row:
+            new_emails.append(email_text)
+
+    conn.close()
+
+    if not new_emails:
+        print("NO_NEW_EMAILS", end="")
+        return
+
+    # Reassemble into the same format
+    output = ""
+    for email_text in new_emails:
+        output += "===EMAIL_START===\n"
+        output += email_text + "\n"
+        output += "===EMAIL_END===\n\n"
+
+    print(output, end="")
+
+
+def cmd_mark_processed(args):
+    """Mark all emails in a raw file as processed."""
+    raw_file = args.raw_file
+    if not os.path.exists(raw_file):
+        print(f"Error: {raw_file} not found.", file=sys.stderr)
+        sys.exit(1)
+
+    with open(raw_file) as f:
+        text = f.read()
+
+    emails = parse_raw_emails(text)
+    if not emails:
+        return
+
+    conn = get_conn()
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    with conn:
+        for email_text in emails:
+            h = hash_email(email_text)
+            conn.execute(
+                "INSERT OR IGNORE INTO processed_emails (email_hash, processed_at) VALUES (?, ?)",
+                (h, now),
+            )
+
+    conn.close()
+    print(f"  Marked {len(emails)} emails as processed.")
+
+
+# ── stale ──────────────────────────────────────────────────────
+
+def cmd_stale(args):
+    """Mark jobs stuck in 'Applied' for too long as 'No Response'."""
+    days = args.days
+    cutoff = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
+
+    conn = get_conn()
+    rows = conn.execute(
+        """SELECT job_id, company, role, last_updated FROM jobs
+           WHERE status = 'Applied' AND last_updated < ? AND last_updated != ''""",
+        (cutoff,),
+    ).fetchall()
+
+    if not rows:
+        conn.close()
+        print(f"  No stale jobs found (threshold: {days} days).")
+        return
+
+    with conn:
+        for row in rows:
+            conn.execute(
+                "UPDATE jobs SET status = 'No Response' WHERE job_id = ?",
+                (row['job_id'],),
+            )
+            conn.execute(
+                "INSERT INTO status_history (job_id, status, date) VALUES (?, ?, ?)",
+                (row['job_id'], "No Response", datetime.now().strftime("%Y-%m-%d")),
+            )
+
+    conn.close()
+    print(f"  Marked {len(rows)} jobs as 'No Response' (no activity in {days}+ days).")
+
+
 # ── CLI ─────────────────────────────────────────────────────────
 
 def main():
@@ -407,6 +564,15 @@ def main():
     sub.add_parser("export", help="Export database as JSON")
     sub.add_parser("count", help="Print total job count")
 
+    dedup_p = sub.add_parser("dedup", help="Filter out already-processed emails")
+    dedup_p.add_argument("raw_file", help="Path to raw emails text file")
+
+    mark_p = sub.add_parser("mark-processed", help="Mark emails as processed")
+    mark_p.add_argument("raw_file", help="Path to raw emails text file")
+
+    stale_p = sub.add_parser("stale", help="Mark stale Applied jobs as No Response")
+    stale_p.add_argument("--days", type=int, default=30, help="Days threshold (default: 30)")
+
     args = parser.parse_args()
 
     if args.command is None:
@@ -419,6 +585,9 @@ def main():
         "match": cmd_match,
         "export": cmd_export,
         "count": cmd_count,
+        "dedup": cmd_dedup,
+        "mark-processed": cmd_mark_processed,
+        "stale": cmd_stale,
     }
 
     commands[args.command](args)

@@ -62,57 +62,82 @@ on run argv
 					-- Skip if INBOX not accessible
 				end try
 
-				-- Search Sent mailbox
+				-- Search Sent mailbox — try `sent mailbox` property first, fall back
+				-- to scanning mailboxes for one named like "Sent".
+				set sentMboxList to {}
 				try
-					set sentMbox to sent mailbox of acct
-					set recentSent to (every message of sentMbox whose date received > cutoffDate)
-
-					repeat with msg in recentSent
+					set end of sentMboxList to sent mailbox of acct
+				end try
+				try
+					repeat with mbx in (every mailbox of acct)
 						try
-							set subj to subject of msg
-
-							if subj contains "application" or subj contains "applied" or subj contains "interview" or subj contains "offer" or subj contains "position" or subj contains "resume" or subj contains "job" or subj contains "career" or subj contains "cover letter" then
-
-								set senderAddr to sender of msg
-								set recipientList to ""
-								try
-									repeat with r in to recipients of msg
-										set recipientList to recipientList & address of r & ", "
-									end repeat
-								end try
-
-								set dateRecv to date received of msg as string
-
-								set bodyContent to ""
-								try
-									set bodyContent to content of msg
-									if (count of bodyContent) > 1500 then
-										set bodyContent to text 1 thru 1500 of bodyContent
-									end if
-								on error
-									set bodyContent to "(could not read body)"
-								end try
-
-								set output to output & "===EMAIL_START===" & linefeed
-								set output to output & "Account: " & acctName & linefeed
-								set output to output & "Direction: SENT" & linefeed
-								set output to output & "Subject: " & subj & linefeed
-								set output to output & "From: " & senderAddr & linefeed
-								set output to output & "To: " & recipientList & linefeed
-								set output to output & "Date: " & dateRecv & linefeed
-								set output to output & "Body: " & bodyContent & linefeed
-								set output to output & "===EMAIL_END===" & linefeed & linefeed
-
-								set emailCount to emailCount + 1
+							set mbxName to name of mbx
+							if mbxName contains "Sent" or mbxName contains "sent" then
+								set end of sentMboxList to mbx
 							end if
-
-						on error
-							-- Skip problematic messages
 						end try
 					end repeat
-				on error
-					-- Skip if Sent not accessible
 				end try
+
+				repeat with sentMbox in sentMboxList
+					try
+						set recentSent to (every message of sentMbox whose date sent > cutoffDate)
+
+						repeat with msg in recentSent
+							try
+								set subj to subject of msg
+
+								if subj contains "application" or subj contains "applied" or subj contains "interview" or subj contains "offer" or subj contains "rejected" or subj contains "hiring" or subj contains "position" or subj contains "candidate" or subj contains "recruitment" or subj contains "resume" or subj contains "job" or subj contains "career" or subj contains "opportunity" or subj contains "recruiter" or subj contains "onboarding" or subj contains "cover letter" or subj contains "applying" or subj contains "role" or subj contains "follow" then
+
+									set senderAddr to sender of msg
+									set recipientList to ""
+									try
+										repeat with r in to recipients of msg
+											set recipientList to recipientList & address of r & ", "
+										end repeat
+									end try
+
+									-- Prefer date sent for sent messages; fall back to date received
+									set dateStr to ""
+									try
+										set dateStr to (date sent of msg) as string
+									on error
+										try
+											set dateStr to (date received of msg) as string
+										end try
+									end try
+
+									set bodyContent to ""
+									try
+										set bodyContent to content of msg
+										if (count of bodyContent) > 1500 then
+											set bodyContent to text 1 thru 1500 of bodyContent
+										end if
+									on error
+										set bodyContent to "(could not read body)"
+									end try
+
+									set output to output & "===EMAIL_START===" & linefeed
+									set output to output & "Account: " & acctName & linefeed
+									set output to output & "Direction: SENT" & linefeed
+									set output to output & "Subject: " & subj & linefeed
+									set output to output & "From: " & senderAddr & linefeed
+									set output to output & "To: " & recipientList & linefeed
+									set output to output & "Date: " & dateStr & linefeed
+									set output to output & "Body: " & bodyContent & linefeed
+									set output to output & "===EMAIL_END===" & linefeed & linefeed
+
+									set emailCount to emailCount + 1
+								end if
+
+							on error
+								-- Skip problematic messages
+							end try
+						end repeat
+					on error
+						-- Skip if this candidate mailbox isn't accessible
+					end try
+				end repeat
 
 			on error
 				-- Skip problematic accounts

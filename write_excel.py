@@ -17,11 +17,12 @@ STATUS_COLORS = {
     "accepted": PatternFill(start_color="00B050", end_color="00B050", fill_type="solid"),
     "rejected": PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid"),
     "follow-up": PatternFill(start_color="E2EFDA", end_color="E2EFDA", fill_type="solid"),
+    "no response": PatternFill(start_color="A6A6A6", end_color="A6A6A6", fill_type="solid"),
     "other": PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid"),
 }
 
-HEADERS = ["Job ID", "Company", "Role", "Status", "Date Applied", "Last Updated", "Email Subject", "Status History", "Notes"]
-COL_WIDTHS = {"A": 12, "B": 25, "C": 30, "D": 16, "E": 14, "F": 14, "G": 40, "H": 35, "I": 40}
+HEADERS = ["Job ID", "Company", "Role", "Status", "Source", "Date Applied", "Last Updated", "Email Subject", "Status History", "Notes"]
+COL_WIDTHS = {"A": 12, "B": 25, "C": 30, "D": 16, "E": 16, "F": 14, "G": 14, "H": 40, "I": 35, "J": 40}
 
 
 def style_header(ws):
@@ -98,24 +99,27 @@ def write_excel(data, output_path):
         status_cell.fill = get_status_fill(status)
         status_cell.alignment = Alignment(horizontal="center", vertical="top")
 
+        # Source
+        ws.cell(row=row_idx, column=5, value=entry.get("source", "")).font = data_font
+
         # Date Applied
-        ws.cell(row=row_idx, column=5, value=entry.get("date", "")).font = data_font
+        ws.cell(row=row_idx, column=6, value=entry.get("date", "")).font = data_font
 
         # Last Updated
-        ws.cell(row=row_idx, column=6, value=entry.get("last_updated", "")).font = data_font
+        ws.cell(row=row_idx, column=7, value=entry.get("last_updated", "")).font = data_font
 
         # Email Subject
-        ws.cell(row=row_idx, column=7, value=entry.get("subject", "")).font = data_font
-        ws.cell(row=row_idx, column=7).alignment = wrap_alignment
+        ws.cell(row=row_idx, column=8, value=entry.get("subject", "")).font = data_font
+        ws.cell(row=row_idx, column=8).alignment = wrap_alignment
 
         # Status History
         history_str = format_status_history(entry.get("status_history", []))
-        ws.cell(row=row_idx, column=8, value=history_str).font = Font(size=10, name="Calibri", color="666666")
-        ws.cell(row=row_idx, column=8).alignment = wrap_alignment
+        ws.cell(row=row_idx, column=9, value=history_str).font = Font(size=10, name="Calibri", color="666666")
+        ws.cell(row=row_idx, column=9).alignment = wrap_alignment
 
         # Notes
-        ws.cell(row=row_idx, column=9, value=entry.get("notes", "")).font = data_font
-        ws.cell(row=row_idx, column=9).alignment = wrap_alignment
+        ws.cell(row=row_idx, column=10, value=entry.get("notes", "")).font = data_font
+        ws.cell(row=row_idx, column=10).alignment = wrap_alignment
 
     # Column widths
     for col_letter, width in COL_WIDTHS.items():

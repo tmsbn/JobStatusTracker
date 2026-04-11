@@ -1,17 +1,1390 @@
 [
   {
+    "job_id": "JOB-205",
+    "company": "TikTok",
+    "role": "TikTok Shop - Strategy and Operations Managers, Shoptab",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-10",
+    "last_updated": "2026-04-10",
+    "subject": "Your application to TikTok Shop - Strategy and Operations Managers, Shoptab at TikTok",
+    "notes": "Application rejected",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-204",
+    "company": "Aquent",
+    "role": "Program Manager Non Tech 2",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-10",
+    "last_updated": "2026-04-10",
+    "subject": "Update on your application for Program Manager Non Tech 2 (Part-time 20hrs/week)",
+    "notes": "Position no longer available",
+    "source": "Recruiter",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-203",
+    "company": "Amazon",
+    "role": "Senior Program Manager Last Mile Launch",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-10",
+    "last_updated": "2026-04-10",
+    "subject": "Amazon application: Status update",
+    "notes": "Application rejected; not progressing with other candidates",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-200",
+    "company": "Amazon",
+    "role": "Category Manager (Services)",
+    "job_url": "",
+    "status": "Offer",
+    "date": "2026-04-08",
+    "last_updated": "2026-04-10",
+    "subject": "Re: Amazon Careers : Category Manager (Services) 10383258",
+    "notes": "Requesting completion of assessment and questionnaire for consideration Presented to hiring team for review; decision expected within couple of days [Sent] Confirming willingness to proceed after compensation discussion ($125k total comp)",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-08"
+      },
+      {
+        "status": "Offer",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-169",
+    "company": "Wyze",
+    "role": "Retail Account Manager - Builder Accounts",
+    "job_url": "",
+    "status": "Interview",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-10",
+    "subject": "Re: Next Round Interview with Kelley Morse",
+    "notes": "Interview scheduled for April 8, 2026 at 9:00 AM PDT with Head of Talent Scheduling next round interview with hiring manager Kelley Morse Interview scheduled for April 14 at 11:30 AM PDT with Sr. Account Manager Kelley Morse [Sent] Confirming interview with Kelley Morse on April 14 at 11:30 AM PDT",
+    "source": "Recruiter",
+    "status_history": [
+      {
+        "status": "Interview",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-161",
+    "company": "Harvey Nash",
+    "role": "Sr Events Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-10",
+    "subject": "Your application to Sr Events Manager at Harvey Nash",
+    "notes": "Application submitted for Sr Events Manager in Bellevue, WA (On-site) Application rejected; not moving forward",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-158",
+    "company": "Aquent | Skill",
+    "role": "Business Operations Lead",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-10",
+    "subject": "Your Application for Business Operations Lead at Aquent | Skill - Quick Update!",
+    "notes": "Application confirmation for Business Operations Lead position Application received for Business Operations Lead position Status update: 151 candidates in pool, hiring manager reviewing, encouraged to complete interview questions",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      },
+      {
+        "status": "Follow-up",
+        "date": "2026-04-10"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-202",
+    "company": "Commercial Construction Field Services Company",
+    "role": "Outside Sales Representative (B2B | Tampa Market Expansion)",
+    "job_url": "",
+    "status": "Other",
+    "date": "2026-04-09",
+    "last_updated": "2026-04-09",
+    "subject": "Merin, I think this job might be right for you!",
+    "notes": "ZipRecruiter job recommendation for Outside Sales Representative in Tampa, FL",
+    "source": "ZipRecruiter",
+    "status_history": [
+      {
+        "status": "Other",
+        "date": "2026-04-09"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-165",
+    "company": "Harvey Nash",
+    "role": "Marketing Project Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-09",
+    "subject": "Your application to Marketing Project Manager at Harvey Nash",
+    "notes": "Application submitted for Marketing Project Manager in San Francisco Bay Area (Hybrid) Application rejected; applied Apr 6, decision received Apr 9",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-09"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-201",
+    "company": "DoorDash",
+    "role": "Senior Manager, Corporate Development",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-08",
+    "last_updated": "2026-04-08",
+    "subject": "DoorDash Application Status",
+    "notes": "Position no longer open; keeping candidate on file for future opportunities",
+    "source": "Greenhouse",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-08"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-199",
+    "company": "TikTok",
+    "role": "TikTok Shop - Last Mile Solutions Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-08",
+    "last_updated": "2026-04-08",
+    "subject": "TikTok: Application Update | TikTok Shop - Last Mile Solutions Manager",
+    "notes": "Position has been filled; candidacy not being pursued",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-08"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-198",
+    "company": "Meta",
+    "role": "Product Marketing Manager I",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-08",
+    "last_updated": "2026-04-08",
+    "subject": "Meta Application Update",
+    "notes": "Application rejected; recruiter indicated they are moving forward with other applicants",
+    "source": "Recruiter",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-08"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-197",
+    "company": "Aquent | Skill",
+    "role": "Contract Specialist Legal",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Contract Specialist Legal position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-196",
+    "company": "Meta",
+    "role": "Program Manager I",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Your Meta Application Update",
+    "notes": "Application received for contract Program Manager I role",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-195",
+    "company": "Meta",
+    "role": "Project Coordinator V",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Your Meta Application Update",
+    "notes": "Application received for contract Project Coordinator V role",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-194",
+    "company": "SentiLink",
+    "role": "Strategy & Business Operations Generalist",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Important information about your application to SentiLink",
+    "notes": "Application rejected, invited to reapply in future",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-193",
+    "company": "Aquent | Skill",
+    "role": "Global Program Manager \u2013 Marketplace Operations",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Global Program Manager position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-192",
+    "company": "Aquent | Skill",
+    "role": "Program Manager Non Tech 2 (Part-time 20hrs/week)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Program Manager Non Tech 2 part-time position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-191",
+    "company": "Aquent | Skill",
+    "role": "Social Media Strategic Planner (B2C/tech)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Social Media Strategic Planner position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-190",
+    "company": "Aquent | Skill",
+    "role": "Marketing Manager II",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Marketing Manager II position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-189",
+    "company": "Aquent | Skill",
+    "role": "Influencer Marketing Specialist",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Influencer Marketing Specialist position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-188",
+    "company": "Aquent | Skill",
+    "role": "Marketing Assistant/Specialist IV",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Marketing Assistant/Specialist IV position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-187",
+    "company": "Aquent | Skill",
+    "role": "Creative Project Coordinator",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Creative Project Coordinator position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-186",
+    "company": "Aquent | Skill",
+    "role": "Program Coordinator 2",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Program Coordinator 2 position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-185",
+    "company": "Aquent | Skill",
+    "role": "Channel Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application received for Channel Marketing Manager position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-184",
+    "company": "Aston Carter",
+    "role": "Business Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Hi Merin, thank you for applying to the Business Manager position - Aston Carter Careers",
+    "notes": "Application received for Business Manager position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-183",
+    "company": "Experis",
+    "role": "Business Development Manager 3",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Business Development Manager 3",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-182",
+    "company": "Experis",
+    "role": "Program Coordinator 3",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Program Coordinator 3",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-181",
+    "company": "Experis",
+    "role": "Program Coordinator - PART TIME - Onsite - Redmond, WA",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Program Coordinator- PART TIME - Onsite - Redmond, WA",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-180",
+    "company": "Aston Carter",
+    "role": "Project Coordinator",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Hi Merin, thank you for applying to the Project Coordinator position - Aston Carter Careers",
+    "notes": "Application received for Project Coordinator position",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-179",
+    "company": "Funko",
+    "role": "Product Manager, Go-To-Market",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Your application for Product Manager, Go-To-Market at Funko has arrived",
+    "notes": "Application received, team will review materials",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-178",
+    "company": "TALENT Software Services",
+    "role": "Business Development Manager 2",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Merin, your application was sent to TALENT Software Services",
+    "notes": "Application submitted for Business Development Manager 2 role in Mountain View, CA (On-site)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-177",
+    "company": "TALENT Software Services",
+    "role": "Procurement Category Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Merin, your application was sent to TALENT Software Services",
+    "notes": "Application submitted for Procurement Category Manager role in Redmond, WA (On-site)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-176",
+    "company": "Considine Search",
+    "role": "Business Development Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Merin, your application was sent to Considine Search",
+    "notes": "Application submitted for Business Development Manager role (Hybrid, Greater Seattle Area)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-175",
+    "company": "DELSEY PARIS",
+    "role": "E-Commerce Business Lead",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Merin, your application was sent to DELSEY PARIS",
+    "notes": "Application submitted for E-Commerce Business Lead role in Seattle, WA (Remote)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-174",
+    "company": "Experis",
+    "role": "Program Manager Tech 1",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Program Manager Tech 1",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-173",
+    "company": "Experis",
+    "role": "Program Manager Tech 2",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Program Manager Tech 2",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-172",
+    "company": "Experis",
+    "role": "Project Manager Tech 3",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Application Next Steps: Project Manager Tech 3",
+    "notes": "Application received, awaiting response on work arrangement preference",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-171",
+    "company": "Randstad",
+    "role": "AP/AR Front Desk Admin",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "Hiring! AP/ AR Front Desk Admin",
+    "notes": "Direct recruiter outreach from Adam Fang at Randstad for contract position, $25-26/hr in Tukwila, WA",
+    "source": "Recruiter",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-170",
+    "company": "Microsoft",
+    "role": "Marketing Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-07",
+    "last_updated": "2026-04-07",
+    "subject": "You Applied for a Contract Role at Microsoft",
+    "notes": "Contract role application submitted; under review by Allegis Global Solutions recruiters",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-159",
+    "company": "Amazon",
+    "role": "Supply Chain Manager, AMXL",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-07",
+    "subject": "You've withdrawn your Amazon job application!",
+    "notes": "Application status tracking and completion reminder for Supply Chain Manager role Application withdrawal confirmed",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-058",
+    "company": "Amazon",
+    "role": "Program Manager II, Applied AI",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-30",
+    "last_updated": "2026-04-07",
+    "subject": "Amazon application: Status update",
+    "notes": "Application submitted. Job ID: 10378509. Position no longer available",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-07"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-168",
+    "company": "Microsoft",
+    "role": "Product Marketing Manager",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "You have incomplete applications",
+    "notes": "Incomplete application reminder for Product Marketing Manager in Redmond, WA; requires completion",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Follow-up",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-167",
+    "company": "Aquent | Skill",
+    "role": "Business Development Manager 3",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Thank you for your application to Aquent | Skill",
+    "notes": "Application confirmation for Business Development Manager 3 position",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-166",
+    "company": "Harvey Nash",
+    "role": "Associate Project Manager - New Haven, CT",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Merin, your application was sent to Harvey Nash",
+    "notes": "Application submitted for Associate Project Manager (Remote)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-164",
+    "company": "Harvey Nash",
+    "role": "Program Manager (Consumer Sales)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Merin, your application was sent to Harvey Nash",
+    "notes": "Application submitted for Program Manager (Consumer Sales) (Remote)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-163",
+    "company": "Harvey Nash",
+    "role": "Program Manager, Music Industry Operations",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Merin, your application was sent to Harvey Nash",
+    "notes": "Application submitted for Program Manager, Music Industry Operations in Seattle, WA (On-site)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-162",
+    "company": "Harvey Nash",
+    "role": "Category Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Merin, your application was sent to Harvey Nash",
+    "notes": "Application submitted for Category Manager in Redmond, WA (On-site)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-160",
+    "company": "Pawfy",
+    "role": "TikTok Shop Lead",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-06",
+    "last_updated": "2026-04-06",
+    "subject": "Merin, your application was sent to Pawfy",
+    "notes": "Application submitted for TikTok Shop Lead position (Remote)",
+    "source": "LinkedIn",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-156",
+    "company": "Meta",
+    "role": "Account Manager IV",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-06",
+    "subject": "Meta Application Update",
+    "notes": "Application confirmation for Account Manager IV contract role Contract role application received, under review by Meta CWx Direct-Sourcing Team Application rejected for Account Manager IV contract role; moving forward with other applicants",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-03"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-06"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-136",
+    "company": "Meta",
+    "role": "Program Manager III",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-02",
+    "last_updated": "2026-04-06",
+    "subject": "Your Meta Application Update",
+    "notes": "Application received for contract role, under review by CWx Direct-Sourcing Team Contract role application received and will be reviewed by CWx Direct-Sourcing Team Contract role application submitted; under review Application received for Program Manager III contract role; under review",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-02"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-042",
+    "company": "Microsoft",
+    "role": "Business Development Manager",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-03-28",
+    "last_updated": "2026-04-06",
+    "subject": "You Applied for a Contract Role at Microsoft",
+    "notes": "Application received and under review. Job ID: 200033033. Application submitted for Business Development Manager contract role",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-28"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-152",
+    "company": "Amazon",
+    "role": "Senior Vendor Manager, Home Improvement",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-04",
+    "last_updated": "2026-04-05",
+    "subject": "Amazon application: Status update",
+    "notes": "Application confirmation for Senior Vendor Manager, Home Improvement (ID: 10381309) Application confirmation for Senior Vendor Manager position Application rejected for Senior Vendor Manager position after careful review",
+    "source": "Workday",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-04"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-05"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-129",
+    "company": "NSF",
+    "role": "Project Manager Nutrition & Wellness",
+    "job_url": "",
+    "status": "Follow-up",
+    "date": "2026-04-02",
+    "last_updated": "2026-04-05",
+    "subject": "Continue to apply for the job Project Manager Nutrition & Wellness",
+    "notes": "Draft application saved. Must be completed and submitted within 30 days or data will be deleted. From NSF Talent Acquisition. Draft application saved, request to complete and submit Draft application saved, needs completion within 30 days Draft application saved; needs completion within 30 days Reminder to complete draft application within 30-day window or restart process",
+    "source": "Company Website",
+    "status_history": [
+      {
+        "status": "Other",
+        "date": "2026-04-02"
+      },
+      {
+        "status": "Follow-up",
+        "date": "2026-04-02"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-155",
+    "company": "eBay",
+    "role": "Sr. Category Manager, Coins",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-04",
+    "last_updated": "2026-04-04",
+    "subject": "eBay application update",
+    "notes": "Application rejected for Sr. Category Manager, Coins role Application rejected due to significant interest in role",
+    "source": "Workday",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-04"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-154",
+    "company": "Amazon",
+    "role": "Category Manager, Services, Global Procurement Organization (GPO)",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-04",
+    "last_updated": "2026-04-04",
+    "subject": "Keep track of your application",
+    "notes": "Application confirmation for Category Manager, Services, Global Procurement Organization (ID: 10383258) Application confirmation for Category Manager position",
+    "source": "Workday",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-04"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-153",
+    "company": "Amazon",
+    "role": "Vendor/Buyer Manager, Worldwide Grocery Category Management",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-04",
+    "last_updated": "2026-04-04",
+    "subject": "Keep track of your application",
+    "notes": "Application confirmation for Vendor/Buyer Manager, Worldwide Grocery Category Management (ID: 10377190) Application confirmation for Vendor/Buyer Manager position",
+    "source": "Workday",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-04"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-157",
+    "company": "Meta",
+    "role": "Partnership and Contracts Manager II",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your Meta Application Update",
+    "notes": "Application confirmation for Partnership and Contracts Manager II contract role Contract role application received, under review by Meta CWx Direct-Sourcing Team",
+    "source": "Other",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-149",
+    "company": "TikTok",
+    "role": "TikTok Shop - Creator Live Strategy & Operations Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Creator Live Strategy & Operations Manager at TikTok",
+    "notes": "Application rejected, position in Los Angeles, CA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-148",
+    "company": "TikTok",
+    "role": "TikTok Shop - TikTok Shop Partner, Strategy & Operations Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - TikTok Shop Partner, Strategy & Operations Manager at TikTok",
+    "notes": "Application rejected, position in Los Angeles, CA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-147",
+    "company": "TikTok",
+    "role": "TikTok Shop - Creator Live Strategy & Operations Associate",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Creator Live Strategy & Operations Associate at TikTok",
+    "notes": "Application rejected, position in Los Angeles, CA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-146",
+    "company": "TikTok",
+    "role": "TikTok Shop - Strategy & Operations Manager, Merchant Growth",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Strategy & Operations Manager, Merchant Growth at TikTok",
+    "notes": "Application rejected, position in Los Angeles, CA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-145",
+    "company": "TikTok",
+    "role": "Creator Live Strategy & Operations Associate",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Creator Live Strategy & Operations Associate at TikTok",
+    "notes": "Application notification",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-144",
+    "company": "TikTok",
+    "role": "Strategy & Operations Manager, Merchant Growth",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Strategy & Operations Manager, Merchant Growth at TikTok",
+    "notes": "Application notification",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-143",
+    "company": "ByteDance",
+    "role": "TikTok Shop Partner, Ecosystem Partnership Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "ByteDance: Application Update | TikTok Shop - TikTok Shop Partner, Ecosystem Partnership Manager",
+    "notes": "Position filled; not proceeding with candidacy",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-142",
+    "company": "TikTok",
+    "role": "Category Manager - K-Beauty",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Category Manager - K-Beauty at TikTok",
+    "notes": "Rejection notice; application submitted Mar 29",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-141",
+    "company": "TikTok",
+    "role": "Category Lead - Health",
+    "job_url": "",
+    "status": "Applied",
+    "date": "2026-04-03",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Category Lead - Health at TikTok",
+    "notes": "Application notification",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
     "job_id": "JOB-139",
     "company": "Microsoft",
     "role": "Program Manager",
     "job_url": "",
     "status": "Applied",
     "date": "2026-04-02",
-    "last_updated": "2026-04-02",
+    "last_updated": "2026-04-03",
     "subject": "You Applied for a Contract Role at Microsoft",
-    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions",
+    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions Application submitted for contract role Contract role application submitted; under review by Allegis Global Solutions Application confirmation for Program Manager contract role Contract role application submitted, under review by Allegis Global Solutions recruiters",
+    "source": "Other",
     "status_history": [
       {
         "status": "Applied",
+        "date": "2026-04-02"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-091",
+    "company": "TikTok",
+    "role": "TikTok Shop - Category Manager - K-Beauty",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-31",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Category Manager - K-Beauty at TikTok",
+    "notes": "Rejected on Mar 31. Company recognized skills and experiences but decided not to move forward with candidacy. Application rejected, position in Seattle, WA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-03-31"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-090",
+    "company": "TikTok",
+    "role": "TikTok Shop - Category Lead - Health",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-31",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Category Lead - Health at TikTok",
+    "notes": "Rejected on Mar 31. Company recognized skills and experiences but decided not to move forward with candidacy. Application rejected, position in Seattle, WA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-03-31"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-092",
+    "company": "TikTok",
+    "role": "TikTok Shop - TikTok Shop Partner, Ecosystem Partnership Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-30",
+    "last_updated": "2026-04-03",
+    "subject": "ByteDance: Application Update | TikTok Shop - TikTok Shop Partner, Ecosystem Partnership Manager",
+    "notes": "Applied via LinkedIn on Mar 30. Location: Los Angeles, CA (On-site). Position filled, application not moving forward",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-060",
+    "company": "TikTok",
+    "role": "TikTok Shop - Assortment Strategy Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-03-30",
+    "last_updated": "2026-04-03",
+    "subject": "Your application to TikTok Shop - Assortment Strategy Manager at TikTok",
+    "notes": "Applied via LinkedIn Easy Apply. Location: Seattle, WA (On-site). Application rejected, position in Seattle, WA",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Applied",
+        "date": "2026-03-30"
+      },
+      {
+        "status": "Rejected",
+        "date": "2026-04-03"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-151",
+    "company": "TikTok",
+    "role": "TikTok Shop - Strategy & Operations Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-02",
+    "last_updated": "2026-04-02",
+    "subject": "ByteDance: Application Update | TikTok Shop - Strategy & Operations Manager",
+    "notes": "Position filled, application not moving forward",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-02"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-150",
+    "company": "TikTok",
+    "role": "TikTok Shop - Logistics Strategy Manager",
+    "job_url": "",
+    "status": "Rejected",
+    "date": "2026-04-02",
+    "last_updated": "2026-04-02",
+    "subject": "ByteDance: Application Update | TikTok Shop - Logistics Strategy Manager",
+    "notes": "Position filled, application not moving forward",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Rejected",
+        "date": "2026-04-02"
+      }
+    ]
+  },
+  {
+    "job_id": "JOB-140",
+    "company": "Insight Global",
+    "role": "Unknown Role",
+    "job_url": "",
+    "status": "Other",
+    "date": "2026-04-02",
+    "last_updated": "2026-04-02",
+    "subject": "Update on your Application:",
+    "notes": "Application under review (role not specified in generic template emails)",
+    "source": "",
+    "status_history": [
+      {
+        "status": "Other",
         "date": "2026-04-02"
       }
     ]
@@ -25,7 +1398,8 @@
     "date": "2026-04-02",
     "last_updated": "2026-04-02",
     "subject": "You Applied for a Contract Role at Microsoft",
-    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions",
+    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions Application submitted for contract role Contract role application submitted; under review by Allegis Global Solutions",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -42,24 +1416,8 @@
     "date": "2026-04-02",
     "last_updated": "2026-04-02",
     "subject": "You Applied for a Contract Role at Microsoft",
-    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions",
-    "status_history": [
-      {
-        "status": "Applied",
-        "date": "2026-04-02"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-136",
-    "company": "Meta",
-    "role": "Program Manager III",
-    "job_url": "",
-    "status": "Applied",
-    "date": "2026-04-02",
-    "last_updated": "2026-04-02",
-    "subject": "Your Meta Application Update",
-    "notes": "Application received for contract role, under review by CWx Direct-Sourcing Team Contract role application received and will be reviewed by CWx Direct-Sourcing Team",
+    "notes": "Contract role application successfully submitted, under review by Allegis Global Solutions Application submitted for contract role Contract role application submitted; under review by Allegis Global Solutions",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -77,6 +1435,7 @@
     "last_updated": "2026-04-02",
     "subject": "Your application to TikTok Shop - Senior Strategy Associate, Global E-Commerce Resource Management at TikTok",
     "notes": "Application rejected after initial application on Mar 29 Application rejected after submission on Mar 29",
+    "source": "",
     "status_history": [
       {
         "status": "Rejected",
@@ -94,6 +1453,7 @@
     "last_updated": "2026-04-02",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions) on Apr 2. (Note: Different from JOB-032 and JOB-124, applied on different dates)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -111,6 +1471,7 @@
     "last_updated": "2026-04-02",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions) on Apr 2.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -128,6 +1489,7 @@
     "last_updated": "2026-04-02",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions) on Apr 2.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -144,7 +1506,8 @@
     "date": "2026-04-02",
     "last_updated": "2026-04-02",
     "subject": "Ridgeline Application Update for Project Manager, Customer Experience",
-    "notes": "Rejected Apr 2 - company decided to move forward with other candidates. Talent Insider newsletter available to stay informed of future opportunities. Rejected; moving forward with other candidates Application rejected, will keep on file for future opportunities",
+    "notes": "Rejected Apr 2 - company decided to move forward with other candidates. Talent Insider newsletter available to stay informed of future opportunities. Rejected; moving forward with other candidates Application rejected, will keep on file for future opportunities Application rejected, other candidates selected Moving forward with other candidates; info kept on file",
+    "source": "",
     "status_history": [
       {
         "status": "Rejected",
@@ -162,30 +1525,10 @@
     "last_updated": "2026-04-02",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 2.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
-        "date": "2026-04-02"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-129",
-    "company": "NSF",
-    "role": "Project Manager Nutrition & Wellness",
-    "job_url": "",
-    "status": "Follow-up",
-    "date": "2026-04-02",
-    "last_updated": "2026-04-02",
-    "subject": "Continue to apply for the job Project Manager Nutrition & Wellness",
-    "notes": "Draft application saved. Must be completed and submitted within 30 days or data will be deleted. From NSF Talent Acquisition. Draft application saved, request to complete and submit Draft application saved, needs completion within 30 days",
-    "status_history": [
-      {
-        "status": "Other",
-        "date": "2026-04-02"
-      },
-      {
-        "status": "Follow-up",
         "date": "2026-04-02"
       }
     ]
@@ -199,7 +1542,8 @@
     "date": "2026-04-02",
     "last_updated": "2026-04-02",
     "subject": "Your Job Application is incomplete!",
-    "notes": "Incomplete application for Recruiter/Account Manager role (Job #2023-5501). Notification on Apr 2 requesting completion of application. Login: petermerin93@gmail.com. URL to complete: https://careers-insightglobal.icims.com/r.jsp?p=5501 Application incomplete, request to finish submission Application incomplete, needs to be finished via link",
+    "notes": "Incomplete application for Recruiter/Account Manager role (Job #2023-5501). Notification on Apr 2 requesting completion of application. Login: petermerin93@gmail.com. URL to complete: https://careers-insightglobal.icims.com/r.jsp?p=5501 Application incomplete, request to finish submission Application incomplete, needs to be finished via link Application incomplete, needs completion",
+    "source": "",
     "status_history": [
       {
         "status": "Other",
@@ -221,6 +1565,7 @@
     "last_updated": "2026-04-02",
     "subject": "eBay application update",
     "notes": "Rejected on Apr 2. Significant interest in role but company decided not to move forward. Will keep application on file for future positions. Rejected due to significant interest in the role Application rejected due to significant interest in the role",
+    "source": "",
     "status_history": [
       {
         "status": "Rejected",
@@ -238,6 +1583,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Permanent role. HVAC and piping industry. Industrial Group. Complex large-scale project leadership.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -255,6 +1601,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Minecraft influencer campaigns. Creator outreach and campaign execution.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -272,6 +1619,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Large-scale IT operational fleet projects. Preplanning stage oversight. Budget management experience required.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -289,6 +1637,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Permanent role. Industrial automation company. Salary $90K-$115K + bonuses. Benefits: Medical, Dental, Vision, 401k.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -306,6 +1655,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Permanent role. Technology background required. Application Development, EDI, and Integration experience preferred.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -323,6 +1673,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Permanent role. Software-driven initiatives. Partnership with internal technical and business teams.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -340,6 +1691,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Senior Project Manager. Infrastructure-focused initiatives and server refresh project. Pay $50-60/hr.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -357,6 +1709,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. ADT project coordination and management.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -374,6 +1727,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract-to-perm role. Sporting goods wholesaling company. PMO team in Operations Department.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -391,6 +1745,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Permanent role. Leading hospital in NYC. Digital transformation and Epic applications.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -408,6 +1763,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Local government environment. Supporting technology and infrastructure initiatives.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -425,6 +1781,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Supporting delivery of complex, multi-stakeholder projects in utilities environment.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -442,6 +1799,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Technical Project Manager for Security Response team. Pay range $27-37/hr.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -459,6 +1817,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. PMO Specialist supporting project governance and standards.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -476,6 +1835,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role supporting automotive client. Customer Experience Product Management team.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -493,6 +1853,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role. Utilities company. Portfolio of transmission and substation projects ($100K to $25M).",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -510,6 +1871,7 @@
     "last_updated": "2026-04-02",
     "subject": "Thank You for Applying on Insight Global Careers",
     "notes": "Contract role supporting pharmaceutical client in Spring House, PA. Lab automation initiative leadership.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -527,6 +1889,7 @@
     "last_updated": "2026-04-02",
     "subject": "Update on your Application: Project Manager",
     "notes": "Application received via Insight Global Careers portal. Application under review",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -544,6 +1907,7 @@
     "last_updated": "2026-04-02",
     "subject": "Your application to TikTok Shop - Senior Strategy Associate, Global E-Commerce Resource Management at TikTok",
     "notes": "Applied via LinkedIn on Mar 29. Rejected Apr 2 - company decided not to move forward. Location: Seattle, WA.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -565,6 +1929,7 @@
     "last_updated": "2026-04-02",
     "subject": "Your application to Ethics Office Program Manager at TikTok",
     "notes": "Applied via LinkedIn on Mar 29. Rejected Apr 2 - company decided not to move forward. Location: Los Angeles, CA. Application rejected after initial application on Mar 29 Application rejected after submission on Mar 29",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -586,6 +1951,7 @@
     "last_updated": "2026-04-01",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions) on Apr 1.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -603,6 +1969,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 1. (Note: Different from JOB-012 and JOB-114, applied on different dates)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -620,6 +1987,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 1. (Note: Different from JOB-017 and JOB-118, applied on different dates)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -637,6 +2005,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 1. (Note: Different from JOB-016, which was applied Mar 26)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -654,6 +2023,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 1.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -671,6 +2041,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Apr 1.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -688,6 +2059,7 @@
     "last_updated": "2026-04-01",
     "subject": "eBay application update",
     "notes": "Rejected on Apr 1. Significant interest in role but company decided not to move forward. Will keep application on file for future positions.",
+    "source": "",
     "status_history": [
       {
         "status": "Rejected",
@@ -705,6 +2077,7 @@
     "last_updated": "2026-04-01",
     "subject": "Merin, your application was sent to IFG - International Financial Group",
     "notes": "Applied via LinkedIn on Apr 1. Remote position in United States.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -722,6 +2095,7 @@
     "last_updated": "2026-04-01",
     "subject": "Your application was viewed by Loupe",
     "notes": "Application viewed by hiring team on Apr 1. Applied via LinkedIn on Mar 29. Location: Greater Seattle Area.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -739,6 +2113,7 @@
     "last_updated": "2026-04-01",
     "subject": "Re: Sr. Procurement Consultant \u2013 Job #3026452 | Merin Peter",
     "notes": "Client: Northwestern Mutual. 6-month contract with extension possibility. Milwaukee, WI or remote. Max $34/hr W2, no sponsorship. Recruiter Ryan Green responded with role details and requested phone call. Job #3026452. Shortlisted on Apr 1 - Ryan Green confirmed: 'You have been shortlisted for the role, I will keep you updated if they ask for an interview.'",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -760,43 +2135,10 @@
     "last_updated": "2026-03-31",
     "subject": "You have incomplete applications",
     "notes": "Incomplete application for Senior Business & Strategy Program Manager in Hyderabad, India. Notification on Mar 31 requesting completion of missing information.",
+    "source": "",
     "status_history": [
       {
         "status": "Other",
-        "date": "2026-03-31"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-091",
-    "company": "TikTok",
-    "role": "TikTok Shop - Category Manager - K-Beauty",
-    "job_url": "",
-    "status": "Rejected",
-    "date": "2026-03-31",
-    "last_updated": "2026-03-31",
-    "subject": "TikTok: Application Update | TikTok Shop - Category Manager - K-Beauty",
-    "notes": "Rejected on Mar 31. Company recognized skills and experiences but decided not to move forward with candidacy.",
-    "status_history": [
-      {
-        "status": "Rejected",
-        "date": "2026-03-31"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-090",
-    "company": "TikTok",
-    "role": "TikTok Shop - Category Lead - Health",
-    "job_url": "",
-    "status": "Rejected",
-    "date": "2026-03-31",
-    "last_updated": "2026-03-31",
-    "subject": "TikTok: Application Update | TikTok Shop - Category Lead - Health",
-    "notes": "Rejected on Mar 31. Company recognized skills and experiences but decided not to move forward with candidacy.",
-    "status_history": [
-      {
-        "status": "Rejected",
         "date": "2026-03-31"
       }
     ]
@@ -811,6 +2153,7 @@
     "last_updated": "2026-03-31",
     "subject": "Merin, your application was sent to Katalyze AI",
     "notes": "Applied via LinkedIn on Mar 31. Location: San Francisco Bay Area (Hybrid).",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -828,6 +2171,7 @@
     "last_updated": "2026-03-31",
     "subject": "Keep track of your application",
     "notes": "Application received. Job ID: 10380526. Application status can be tracked online.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -845,6 +2189,7 @@
     "last_updated": "2026-03-31",
     "subject": "Senior Project Manager opportunity",
     "notes": "Recruiter Alex from Randstad Life Sciences following up on application. Remote position. 6-month contract with extension possibility. Start date: 03/23/2026. Max $34/hr W2, no sponsorship. Responsibilities include project execution tracking, risk management, change order management, and status reporting.",
+    "source": "",
     "status_history": [
       {
         "status": "Follow-up",
@@ -862,6 +2207,7 @@
     "last_updated": "2026-03-31",
     "subject": "Amazon application: Status update",
     "notes": "Application submitted. Rejected on Mar 31. Email states: 'After careful consideration and review of your application, we have decided to progress with other candidates for this role.' Job ID: 3126323.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -883,6 +2229,7 @@
     "last_updated": "2026-03-30",
     "subject": "Problem with your TikTok Shop - Product Marketing Manager, Category Solutions application",
     "notes": "Application delivery issue reported on Mar 30. User instructed to complete application directly on company website. Applied via LinkedIn.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -900,6 +2247,7 @@
     "last_updated": "2026-03-30",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions) on Mar 30. (Note: Different from JOB-032, which was applied Mar 26)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -917,6 +2265,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Mar 30. (Note: Different from JOB-017, which was applied Mar 26)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -934,6 +2283,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Mar 30. (Note: Different from JOB-019, which was applied Mar 26)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -951,6 +2301,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Mar 30. (Note: Different from JOB-022, which was applied Mar 26)",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -968,6 +2319,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Mar 30.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -985,23 +2337,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on Mar 30. (Note: Different from JOB-012, which was applied Mar 26)",
-    "status_history": [
-      {
-        "status": "Applied",
-        "date": "2026-03-30"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-092",
-    "company": "TikTok",
-    "role": "TikTok Shop - TikTok Shop Partner, Ecosystem Partnership Manager",
-    "job_url": "",
-    "status": "Applied",
-    "date": "2026-03-30",
-    "last_updated": "2026-03-30",
-    "subject": "Merin, your application was sent to TikTok",
-    "notes": "Applied via LinkedIn on Mar 30. Location: Los Angeles, CA (On-site).",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1019,6 +2355,7 @@
     "last_updated": "2026-03-30",
     "subject": "Problem with your TikTok Shop - Product Marketing Manager, Category Solutions application",
     "notes": "Application delivery issue reported. User should complete application on company website.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1036,6 +2373,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your recent job application for Project Manager - Professional Services - 1140",
     "notes": "Application received. Recruiting team will contact if profile matches requirements. Job ID: 1140.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1053,6 +2391,7 @@
     "last_updated": "2026-03-30",
     "subject": "Confirm your identity for job Project Manager - 56096",
     "notes": "Application submitted. Identity confirmation code required. Job ID: 56096.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1070,6 +2409,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing on 2026-03-30.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1087,6 +2427,7 @@
     "last_updated": "2026-03-30",
     "subject": "Merin, Aon requests feedback on your application experience.",
     "notes": "Application received. Feedback survey requested for candidate experience improvement.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1104,23 +2445,7 @@
     "last_updated": "2026-03-30",
     "subject": "Merin, your application was sent to Sol-ti",
     "notes": "Applied via LinkedIn Easy Apply. Location: San Diego County, CA (Hybrid).",
-    "status_history": [
-      {
-        "status": "Applied",
-        "date": "2026-03-30"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-060",
-    "company": "TikTok",
-    "role": "TikTok Shop - Assortment Strategy Manager",
-    "job_url": "",
-    "status": "Applied",
-    "date": "2026-03-30",
-    "last_updated": "2026-03-30",
-    "subject": "Merin, your application was sent to TikTok",
-    "notes": "Applied via LinkedIn Easy Apply. Location: Seattle, WA (On-site).",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1138,23 +2463,7 @@
     "last_updated": "2026-03-30",
     "subject": "Merin, your application was sent to Solomon Page Group LLC",
     "notes": "Applied via LinkedIn Easy Apply. Location: Seattle, WA (Hybrid).",
-    "status_history": [
-      {
-        "status": "Applied",
-        "date": "2026-03-30"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-058",
-    "company": "Amazon",
-    "role": "Program Manager II, Applied AI",
-    "job_url": "",
-    "status": "Applied",
-    "date": "2026-03-30",
-    "last_updated": "2026-03-30",
-    "subject": "Keep track of your application",
-    "notes": "Application submitted. Job ID: 10378509.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1172,6 +2481,7 @@
     "last_updated": "2026-03-30",
     "subject": "Action Required for your Amazon Application - Complete Assessment",
     "notes": "Application submitted. Online assessment required within 2 weeks to proceed. Job ID: 10377738.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1193,6 +2503,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10376072.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1210,6 +2521,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 3203926.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1227,6 +2539,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 3203823.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1244,6 +2557,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10376584.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1261,6 +2575,7 @@
     "last_updated": "2026-03-30",
     "subject": "You've withdrawn your Amazon job application!",
     "notes": "Application submitted then withdrawn on 2026-03-30. Job ID: 3180159.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1282,6 +2597,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10379688.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1299,6 +2615,7 @@
     "last_updated": "2026-03-30",
     "subject": "You've withdrawn your Amazon job application!",
     "notes": "Application submitted then withdrawn on 2026-03-30. Job ID: 3202637.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1320,6 +2637,7 @@
     "last_updated": "2026-03-30",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10379297.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1337,6 +2655,7 @@
     "last_updated": "2026-03-30",
     "subject": "Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. Rejected on 2026-03-30 - decided to move forward with other applicants.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1358,6 +2677,7 @@
     "last_updated": "2026-03-30",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 5 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1375,6 +2695,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1392,6 +2713,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1409,6 +2731,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 3 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1426,6 +2749,7 @@
     "last_updated": "2026-03-30",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1443,6 +2767,7 @@
     "last_updated": "2026-03-29",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200032905.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1460,6 +2785,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application for the Senior Account Manager - Las Vegas & R-104199",
     "notes": "Application received. Job ID: R-104199.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1477,6 +2803,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application for the Senior Category Manager, Brand Expedia & R-101897",
     "notes": "Application received. Job ID: R-101897.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1494,6 +2821,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application for the Senior Market Manager & R-103972",
     "notes": "Application received. Job ID: R-103972.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1511,6 +2839,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200026167.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1528,23 +2857,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200032896.",
-    "status_history": [
-      {
-        "status": "Applied",
-        "date": "2026-03-28"
-      }
-    ]
-  },
-  {
-    "job_id": "JOB-042",
-    "company": "Microsoft",
-    "role": "Business Development Manager",
-    "job_url": "",
-    "status": "Applied",
-    "date": "2026-03-28",
-    "last_updated": "2026-03-28",
-    "subject": "Thank you for your application!",
-    "notes": "Application received and under review. Job ID: 200033033.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1562,6 +2875,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200031997.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1579,6 +2893,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application for the Integrated Marketing Manager & R-102864",
     "notes": "Application received. Job ID: R-102864.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1596,6 +2911,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application for the Senior Manager - Customer Strategy (Brand Expedia) & R-99518",
     "notes": "Application received. Job ID: R-99518.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1613,6 +2929,7 @@
     "last_updated": "2026-03-28",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 3161021.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1630,6 +2947,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200025834.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1647,6 +2965,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200028282.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1664,6 +2983,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200033347.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1681,6 +3001,7 @@
     "last_updated": "2026-03-28",
     "subject": "Thank you for your application!",
     "notes": "Application received and under review. Job ID: 200030014.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1698,6 +3019,7 @@
     "last_updated": "2026-03-27",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1715,6 +3037,7 @@
     "last_updated": "2026-03-27",
     "subject": "DoorDash Application Status",
     "notes": "Position no longer being hired for. Applied via Greenhouse.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1736,6 +3059,7 @@
     "last_updated": "2026-03-27",
     "subject": "Your Application for the Position Merchandise Category Growth Director",
     "notes": "Application received via SuccessFactors. Recruiter: Allison Spriggs, Talent Acquisition Manager.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1753,6 +3077,7 @@
     "last_updated": "2026-03-26",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 4 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1770,6 +3095,7 @@
     "last_updated": "2026-03-26",
     "subject": "You Applied for a Contract Role at Microsoft",
     "notes": "Applied via Microsoft Contractor Talent Community (Allegis Global Solutions). 2 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1787,6 +3113,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1804,6 +3131,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1821,6 +3149,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1838,6 +3167,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1855,6 +3185,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1872,6 +3203,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1889,6 +3221,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1906,6 +3239,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1923,6 +3257,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1940,6 +3275,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1957,6 +3293,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 2 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1974,6 +3311,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -1991,6 +3329,7 @@
     "last_updated": "2026-03-26",
     "subject": "Your Meta Application Update",
     "notes": "Applied via Meta CWx Direct-Sourcing. 4 positions with this title applied.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -2008,6 +3347,7 @@
     "last_updated": "2026-03-26",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 3207275.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -2025,6 +3365,7 @@
     "last_updated": "2026-03-26",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10372774.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -2042,6 +3383,7 @@
     "last_updated": "2026-03-26",
     "subject": "Keep track of your application",
     "notes": "Application submitted. Job ID: 10371579.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -2059,6 +3401,7 @@
     "last_updated": "2026-03-26",
     "subject": "RE: Form Submission - Application Form 3",
     "notes": "General application submitted via form and PandaDoc. No current openings matching background. Contact: Maja Jensen. Encouraged to follow on LinkedIn for future roles.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",
@@ -2080,6 +3423,7 @@
     "last_updated": "2026-03-25",
     "subject": "RE: [EXTERNAL] Checking In \u2013 Merin Peter | Sr. Budget Manager Candidate",
     "notes": "Completed interview loop. Role filled by Suzanne (in talks since Oct). Positive feedback: high energy and passionate. Future pipeline opportunities promised. Contact: Natasha Maestas, VP Operations. Invited to women's networking event; RSVP confirmed.",
+    "source": "",
     "status_history": [
       {
         "status": "Interview",
@@ -2101,6 +3445,7 @@
     "last_updated": "2026-03-25",
     "subject": "Share your feedback: Your recent Amazon interview experience",
     "notes": "Interviewed with Adi on Mar 20. Rejected Mar 23. Recruiter: Uma Althi, handed off to Nic Roldan. Positive interview but did not progress. Feedback survey received Mar 25. Job ID: 3201219.",
+    "source": "",
     "status_history": [
       {
         "status": "Interview",
@@ -2122,6 +3467,7 @@
     "last_updated": "2026-03-24",
     "subject": "DoorDash Application Status",
     "notes": "Position no longer being hired for. Applied via Greenhouse.",
+    "source": "",
     "status_history": [
       {
         "status": "Applied",

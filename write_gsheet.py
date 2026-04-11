@@ -18,8 +18,12 @@ TOKEN_FILE = os.path.join(SCRIPT_DIR, "token.json")
 SHEET_ID_FILE = os.path.join(SCRIPT_DIR, ".gsheet_id")
 SPREADSHEET_NAME = "Job Tracker"
 
-HEADERS = ["Job ID", "Company", "Role", "Status", "Date Applied", "Last Updated",
+HEADERS = ["Job ID", "Company", "Role", "Status", "Source", "Date Applied", "Last Updated",
            "Email Subject", "Status History", "Notes", "Job URL"]
+
+# How many data rows to push per API call. Keeps individual requests well under
+# the Sheets API payload ceiling and provides visible progress on large runs.
+ROW_BATCH_SIZE = 50
 
 STATUS_COLORS = {
     "applied":    {"red": 0.74, "green": 0.84, "blue": 0.93},   # Light blue
@@ -27,7 +31,8 @@ STATUS_COLORS = {
     "offer":      {"red": 0.78, "green": 0.94, "blue": 0.81},   # Green
     "accepted":   {"red": 0.0,  "green": 0.69, "blue": 0.31},   # Dark green
     "rejected":   {"red": 1.0,  "green": 0.78, "blue": 0.81},   # Red
-    "follow-up":  {"red": 0.89, "green": 0.94, "blue": 0.85},   # Light green
+    "follow-up":    {"red": 0.89, "green": 0.94, "blue": 0.85},   # Light green
+    "no response":  {"red": 0.82, "green": 0.82, "blue": 0.82},   # Dark grey
 }
 DEFAULT_STATUS_COLOR = {"red": 0.85, "green": 0.85, "blue": 0.85}  # Grey
 
@@ -44,6 +49,39 @@ def format_status_history(history):
     if not history or not isinstance(history, list):
         return ""
     return " -> ".join(f"{h.get('status', '?')} ({h.get('date', '?')})" for h in history)
+
+
+def _col_letter(idx):
+    """1-based column index -> A1 letter (A, B, ..., Z, AA, ...)."""
+    letters = ""
+    while idx > 0:
+        idx, rem = divmod(idx - 1, 26)
+        letters = chr(ord("A") + rem) + letters
+    return letters
+
+
+def write_rows_in_batches(ws, rows, batch_size=ROW_BATCH_SIZE):
+    """Push `rows` (header + data) to the worksheet in fixed-size chunks.
+
+    Each chunk is one `values.update` call scoped to an explicit A1 range, so
+    a failure mid-run still leaves previously-written batches in the sheet and
+    large datasets never hit the single-request payload ceiling.
+    """
+    if not rows:
+        return
+
+    num_cols = len(rows[0])
+    end_col = _col_letter(num_cols)
+    total = len(rows)
+    total_batches = (total + batch_size - 1) // batch_size
+
+    for batch_idx, start in enumerate(range(0, total, batch_size), start=1):
+        chunk = rows[start:start + batch_size]
+        start_row = start + 1           # sheet rows are 1-indexed
+        end_row = start_row + len(chunk) - 1
+        range_name = f"A{start_row}:{end_col}{end_row}"
+        ws.update(values=chunk, range_name=range_name, value_input_option="USER_ENTERED")
+        print(f"  Batch {batch_idx}/{total_batches}: wrote rows {start_row}-{end_row}")
 
 
 def authenticate():
@@ -137,6 +175,7 @@ def write_gsheet(data, creds):
             entry.get("company", "Unknown"),
             role_cell,
             entry.get("status", "Other"),
+            entry.get("source", ""),
             entry.get("date", ""),
             entry.get("last_updated", ""),
             entry.get("subject", ""),
@@ -145,15 +184,14 @@ def write_gsheet(data, creds):
             job_url,
         ])
 
-    # Write all data at once
-    ws.update(rows, value_input_option="USER_ENTERED")
-
-    # Resize to fit
+    # Resize first so the batched writes always land in valid cells, then
+    # stream the data up in chunks of ROW_BATCH_SIZE rows.
     ws.resize(rows=len(rows), cols=len(HEADERS))
+    write_rows_in_batches(ws, rows)
 
     # ── Formatting ────────────────────────────────────────────
     # Header formatting
-    ws.format("A1:J1", {
+    ws.format("A1:K1", {
         "backgroundColor": {"red": 0.18, "green": 0.33, "blue": 0.59},
         "textFormat": {"bold": True, "foregroundColor": {"red": 1, "green": 1, "blue": 1}, "fontSize": 11},
         "horizontalAlignment": "CENTER",
@@ -163,7 +201,7 @@ def write_gsheet(data, creds):
     ws.freeze(rows=1)
 
     # Column widths (approximate via resize)
-    col_widths = [90, 180, 220, 120, 110, 110, 300, 250, 280, 300]
+    col_widths = [90, 180, 220, 120, 130, 110, 110, 300, 250, 280, 300]
     requests_list = []
     sheet_id = ws.id
     for i, width in enumerate(col_widths):

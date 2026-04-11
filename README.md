@@ -4,20 +4,199 @@ An automated system that extracts job application emails from Apple Mail, uses C
 
 ## How It Works
 
+The tracker runs as a six-stage pipeline orchestrated by `run.sh`. Each stage
+reads the output of the previous one, and all persistent state lives in a
+single SQLite database (`job_tracker.db`). Claude never sees the existing
+database — its prompt size stays **constant** regardless of how many jobs are
+tracked, and all matching, status progression, and deduplication happen
+deterministically in Python.
+
+### Architecture
+
 ```
-Apple Mail.app ──> AppleScript ──> Claude AI ──> SQLite ──> Google Sheets
-   (extract)       (raw text)     (parse only)   (match     (read-only
-                                                  & store)    display)
+                    +------------------------+
+                    |   ./run.sh --days N    |
+                    +------------+-----------+
+                                 |
+                                 v
++----------------------------------------------------------------+
+|  Step 1 -- Extract emails                                      |
+|  extract_emails.applescript                                    |
+|                                                                |
+|    Apple Mail.app  (every configured account)                  |
+|       -> scans INBOX and every "Sent"-style mailbox            |
+|       -> filters by subject keywords                           |
+|       -> tags sent messages with `Direction: SENT`             |
+|       -> uses `date sent` for sent messages                    |
+|       -> emits raw_emails.txt (one block per email)            |
++-------------------------------+--------------------------------+
+                                |
+                                v
++----------------------------------------------------------------+
+|  Step 2 -- Dedupe already-processed emails                     |
+|  job_db.py dedup                                               |
+|                                                                |
+|    raw_emails.txt                                              |
+|       -> hash each block:  sha256(subject | sender | date)     |
+|       -> look up each hash in `processed_emails` table         |
+|       -> drop seen hashes, emit only the new ones              |
+|                                                                |
+|    if nothing new: short-circuit, re-export, exit              |
++-------------------------------+--------------------------------+
+                                |
+                                v
++----------------------------------------------------------------+
+|  Step 3 -- Parse with Claude                                   |
+|  claude -p --model claude-haiku-4-5                            |
+|                                                                |
+|    new emails + prompt  ->  Claude  ->  extracted.json         |
+|                                                                |
+|    fields extracted per entry:                                 |
+|       company, role, status, date, source,                     |
+|       job_url, subject, notes                                  |
+|                                                                |
+|    `Direction: SENT` emails use separate rules:                |
+|       - company inferred from `To:` recipient                  |
+|       - cover letter / resume submit  -> Applied               |
+|       - notes prefixed with `[Sent]`                           |
+|                                                                |
+|    prompt size is CONSTANT -- Claude never sees the database.  |
++-------------------------------+--------------------------------+
+                                |
+                                v
++----------------------------------------------------------------+
+|  Step 4 -- Match extracted entries against SQLite              |
+|  job_db.py match                                               |
+|                                                                |
+|    for each entry in extracted.json, try in order:             |
+|       1. exact company + role (case-insensitive)               |
+|       2. normalized company (strip Inc/LLC/punct) + role       |
+|       3. company_aliases lookup (solomonpage.com -> ...)       |
+|       4. company-only fallback for "Unknown Role"              |
+|                                                                |
+|    match found   -> UPDATE jobs row:                           |
+|                       - status never downgrades                |
+|                       - Rejected is terminal                   |
+|                       - last_updated = today                   |
+|    no match      -> INSERT new JOB-NNN row                     |
+|                       + seed company_aliases                   |
+|                                                                |
+|    any status change   -> append to status_history             |
+|    all processed hashes -> written to processed_emails         |
++-------------------------------+--------------------------------+
+                                |
+                                v
++----------------------------------------------------------------+
+|  Step 5 -- Detect stale applications                           |
+|  job_db.py stale                                               |
+|                                                                |
+|    WHERE status = 'Applied'                                    |
+|      AND last_updated < today - 30 days                        |
+|      -> set status = 'No Response'                             |
++-------------------------------+--------------------------------+
+                                |
+                                v
++----------------------------------------------------------------+
+|  Step 6 -- Sync to Google Sheets                               |
+|                                                                |
+|    job_db.py export  ->  job_data.json  ->  write_gsheet.py    |
+|                                                    |           |
+|                                                    v           |
+|                                        +--------------------+  |
+|                                        |    Google Sheet    |  |
+|                                        |   (read-only view  |  |
+|                                        |    rebuilt fully   |  |
+|                                        |     on each run)   |  |
+|                                        +--------------------+  |
++----------------------------------------------------------------+
 ```
 
-1. **AppleScript** queries all connected Mail.app accounts for job-related emails (inbox + sent)
-2. **Claude AI** (`claude -p`) extracts structured data from each email — company, role, status, dates. It only sees raw emails, not existing job data.
-3. **Python** (`job_db.py match`) matches extracted entries against the SQLite database by company + role, handles status progression, and assigns Job IDs
-4. **Google Sheets** is updated as a read-only view of the database
+### Pipeline stages
 
-### Why this architecture?
+**Step 1 — Extract emails from Apple Mail**
+`extract_emails.applescript` walks every Mail.app account and scans the INBOX
+plus every sent-style mailbox (found via the `sent mailbox` property *or* by
+scanning for mailboxes whose name contains "Sent") for messages in the last
+`N` days. Matching is keyword-based on the subject line, and the script emits
+one block per qualifying email:
 
-Claude's prompt size stays **constant** regardless of how many jobs are tracked. At 500+ jobs, the old approach of sending the entire database to Claude would be unsustainable. Instead, Claude only extracts data from emails (~2,000 tokens), and Python handles all matching deterministically.
+```
+===EMAIL_START===
+Account: personal@gmail.com
+Direction: SENT             <- only present on sent messages
+Subject: Application for Senior Engineer
+From: me@gmail.com
+To: jobs@company.com
+Date: Monday, April 7, 2026 at 9:12 AM
+Body: (first 1500 chars)
+===EMAIL_END===
+```
+
+For sent messages the script uses `date sent` (falling back to `date received`
+if unavailable) so the timestamp reflects when the user actually applied, not
+when Mail indexed the message.
+
+**Step 2 — Dedupe already-processed emails**
+`job_db.py dedup` computes `sha256(subject|sender|date)` for each email block
+and drops any whose hash is already in the `processed_emails` table. Overlapping
+runs — e.g. two `--days 7` runs a day apart — only feed *new* messages to
+Claude. If nothing new is found, the pipeline short-circuits, still runs stale
+detection, re-exports the database, and exits.
+
+**Step 3 — Parse with Claude**
+The remaining email blocks are wrapped in a prompt that asks
+`claude -p --model claude-haiku-4-5` to return a JSON array of structured
+entries with `company`, `role`, `job_url`, `source`, `status`, `date`,
+`subject`, and `notes`. `Direction: SENT` emails have separate rules — the
+company is inferred from the `To:` recipient instead of the sender, cover
+letters/resume submissions map to `Applied`, and notes are prefixed with
+`[Sent]` so sent activity is visible at a glance. Claude also deduplicates
+within the batch, so a user's sent application and the company's automated
+confirmation collapse into a single entry.
+
+**Step 4 — Match extracted entries against SQLite**
+`job_db.py match` reads Claude's JSON and, for each entry, looks for a
+matching row in `jobs` using a cascade of strategies:
+
+1. Exact `company` + `role` (case-insensitive)
+2. Normalized company name (strip `Inc`, `LLC`, punctuation) + role
+3. Company alias lookup (e.g. `solomonpage.com` → `Solomon Page Group LLC`)
+4. Company-only fallback for `Unknown Role` entries
+
+If a match is found, the row is updated in place — but status never
+*downgrades* (`Interview` won't revert to `Applied`), and `Rejected` is
+terminal from any state. `last_updated` is set to **today's date** so the sheet
+reflects when the tracker actually touched the record, not when the underlying
+email arrived. Any status change is appended to `status_history`. If no match
+is found, a new `JOB-NNN` row is inserted and its company name is added to
+`company_aliases` for future runs. Finally, the processed email hashes are
+written to `processed_emails` so they're skipped next time.
+
+**Step 5 — Detect stale applications**
+`job_db.py stale` finds jobs stuck in `Applied` whose `last_updated` is older
+than 30 days and flips them to `No Response`. Because `last_updated` tracks
+the most recent tracker activity, jobs that keep receiving emails are never
+flagged.
+
+**Step 6 — Sync to Google Sheets**
+The database is exported as JSON (`job_db.py export`) and handed to
+`write_gsheet.py`, which rewrites the "Job Applications" worksheet from
+scratch each run. Rows are sorted by `last_updated` descending, statuses are
+color-coded, role cells are hyperlinked to `job_url` when available, and a
+separate "Summary" sheet is rebuilt with status counts and recent activity.
+The Google Sheet is a read-only view of SQLite — manual edits there are
+overwritten on the next run.
+
+### Data model
+
+SQLite (`job_tracker.db`) is the single source of truth. Four tables:
+
+| Table | Purpose |
+|-------|---------|
+| `jobs` | One row per application — Job ID, company, role, status, dates, notes, URL, source |
+| `status_history` | Append-only log of every status transition for a job |
+| `company_aliases` | Maps normalized company strings (e.g. `acmecorp.com`) to canonical names for fuzzy matching |
+| `processed_emails` | SHA-256 hashes of emails already seen, to skip them on future runs |
 
 ## Job ID System
 
@@ -66,13 +245,15 @@ Applied -> Interview -> Offer -> Accepted
 |--------|-------------|
 | Job ID | Unique persistent identifier (`JOB-001`) |
 | Company | Company name |
-| Role | Job title / position |
-| Status | Applied, Interview, Offer, Rejected, Follow-up, Other (color-coded) |
-| Date Applied | Date first seen |
-| Last Updated | Date of most recent email |
+| Role | Job title / position (hyperlinked to `Job URL` when available) |
+| Status | Applied, Interview, Offer, Rejected, Follow-up, No Response, Other (color-coded) |
+| Source | Platform the application came through (LinkedIn, Lever, Workday, Referral, …) |
+| Date Applied | Date of the first email seen for this application |
+| Last Updated | Date the tracker last touched this row (today's date on any insert or update) |
 | Email Subject | Most recent email subject line |
 | Status History | Full progression trail (e.g., `Applied (03-20) -> Interview (03-25)`) |
-| Notes | AI-generated summary of latest activity |
+| Notes | AI-generated summary of latest activity (prefixed with `[Sent]` for user-sent emails) |
+| Job URL | Link to the job posting if found in an email body |
 
 ### Summary Sheet
 
@@ -232,16 +413,25 @@ On a successful run, you'll see output like:
 ============================================
   Job Application Tracker
 ============================================
+  Triggered by: manual
+  Looking back: 7 day(s)
+
   Loaded 122 existing job applications from database.
 
-Step 1/3: Extracting job-related emails from Mail.app (last 7 days)...
+Step 1/4: Extracting job-related emails from Mail.app (last 7 days)...
   Found 28 job-related emails.
+  11 new emails to process (17 already seen).
 
-Step 2/3: Extracting job info with Claude AI...
+Step 2/4: Extracting job info with Claude AI...
   Extracted 11 job-related entries from emails.
   Matched 6 existing jobs, added 5 new jobs.
+  Marked 11 emails as processed.
+  Database saved.
 
-Step 3/3: Updating Google Spreadsheet...
+Step 3/4: Checking for stale applications...
+  No stale jobs found (threshold: 30 days).
+
+Step 4/4: Updating Google Spreadsheet...
   Saved 127 job applications to Google Sheets
 
 ============================================

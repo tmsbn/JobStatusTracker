@@ -69,7 +69,7 @@ fi
 echo ""
 
 # ── Step 1: Extract emails from Mail.app ──────────────────────
-echo "Step 1/3: Extracting job-related emails from Mail.app (last $DAYS_BACK days)..."
+echo "Step 1/4: Extracting job-related emails from Mail.app (last $DAYS_BACK days)..."
 echo "  (This may take a moment depending on mailbox size)"
 
 RAW_OUTPUT=$(osascript "$SCRIPT_DIR/extract_emails.applescript" "$DAYS_BACK" 2>/dev/null) || {
@@ -95,10 +95,32 @@ fi
 echo "$RAW_OUTPUT" > "$TEMP_DIR/raw_emails.txt"
 EMAIL_COUNT=$(grep -c "===EMAIL_START===" "$TEMP_DIR/raw_emails.txt" || echo "0")
 echo "  Found $EMAIL_COUNT job-related emails."
+
+# ── Filter out already-processed emails ──────────────────────
+DEDUP_OUTPUT=$("$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" dedup "$TEMP_DIR/raw_emails.txt" 2>/dev/null)
+
+if [ "$DEDUP_OUTPUT" = "NO_NEW_EMAILS" ] || [ -z "$DEDUP_OUTPUT" ]; then
+    echo "  All emails already processed in previous runs. Skipping AI extraction."
+    if [ "$EXISTING_COUNT" -gt 0 ] 2>/dev/null; then
+        # Still run stale detection and re-export
+        "$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" stale 2>&1
+        "$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" export > "$JOB_DATA_FILE"
+        GSHEET_CREDS="$SCRIPT_DIR/credentials.json"
+        if [ -f "$GSHEET_CREDS" ]; then
+            "$VENV_DIR/bin/python3" "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1
+        fi
+    fi
+    exit 0
+fi
+
+# Replace raw emails with only new (unprocessed) ones
+echo "$DEDUP_OUTPUT" > "$TEMP_DIR/raw_emails.txt"
+NEW_EMAIL_COUNT=$(grep -c "===EMAIL_START===" "$TEMP_DIR/raw_emails.txt" || echo "0")
+echo "  $NEW_EMAIL_COUNT new emails to process ($(( EMAIL_COUNT - NEW_EMAIL_COUNT )) already seen)."
 echo ""
 
 # ── Step 2: Extract structured data with Claude AI ──────────
-echo "Step 2/3: Extracting job info with Claude AI..."
+echo "Step 2/4: Extracting job info with Claude AI..."
 
 # Build prompt — only emails, no existing job data
 cat > "$TEMP_DIR/prompt.txt" << 'PROMPT_DELIM'
@@ -113,25 +135,41 @@ cat >> "$TEMP_DIR/prompt.txt" << 'PROMPT_DELIM'
 
 ## YOUR TASK:
 
-For each email that is genuinely about a job application, extract:
-- `company`: Clean company name (use sender's organization/domain if unclear)
+Each email is either RECEIVED (from a recruiter/company to the user) or SENT
+(from the user outward — marked with a `Direction: SENT` line). For each email
+that is genuinely about a job application, extract:
+- `company`: Clean company name.
+  * For RECEIVED emails: use the sender's organization/domain.
+  * For SENT emails: use the recipient organization from the `To:` line or the
+    company mentioned in the subject/body — NOT the user's own address.
 - `role`: Job title/position ("Unknown Role" if unclear)
 - `job_url`: URL to the job posting if found in the email body (look for URLs containing "job", "career", "position", "apply", "lever", "greenhouse", "workday", "ashby", "icims", "smartrecruiters", "myworkdayjobs", or any link that clearly points to a job listing). Use "" if none found. NEVER fabricate a URL.
+- `source`: The platform or channel this application came through. Infer from sender domain, email body, or URLs. Use one of: "LinkedIn", "Indeed", "Glassdoor", "ZipRecruiter", "Wellfound", "Dice", "Lever", "Greenhouse", "Workday", "Company Website", "Referral", "Recruiter", or "Other". Use "" if truly unclear.
 - `status`: EXACTLY one of: Applied, Interview, Offer, Rejected, Follow-up, Other
 - `date`: Email date (YYYY-MM-DD)
 - `subject`: Email subject line
-- `notes`: Brief one-line summary of what this email is about
+- `notes`: Brief one-line summary of what this email is about. For SENT emails,
+  prefix with "[Sent]" so the user can tell at a glance.
 
-## STATUS RULES:
+## STATUS RULES (RECEIVED):
 - Confirmation email / "application received" = Applied
 - Scheduling / "interview" / "meet the team" = Interview
 - "We regret" / "not moving forward" / "unfortunately" = Rejected
 - Compensation / start date / "congratulations" = Offer
 - Generic follow-up / survey / feedback request = Follow-up
 
+## STATUS RULES (SENT):
+- Submitting an application / cover letter / resume = Applied
+- Replying to schedule or confirm an interview = Interview
+- Accepting or negotiating an offer = Offer
+- Checking in / "following up on my application" = Follow-up
+- Withdrawing = Rejected
+
 ## RULES:
 - Skip emails that are NOT about job applications (newsletters, spam, promotions, marketing)
-- Deduplicate: if multiple emails are about the same company+role, output ONE entry with the latest status and date
+- Skip SENT emails that are clearly not a job application (personal messages,
+  calendar invites, unrelated replies).
+- Deduplicate: if multiple emails are about the same company+role, output ONE entry with the latest status and date. A SENT application followed by a RECEIVED confirmation should collapse into a single entry.
 - Output ONLY a valid JSON array. No markdown fences, no explanation, no extra text.
 - If no emails are relevant, output an empty array: []
 PROMPT_DELIM
@@ -174,6 +212,7 @@ for entry in data:
     entry.setdefault("company", "Unknown")
     entry.setdefault("role", "Unknown Role")
     entry.setdefault("job_url", "")
+    entry.setdefault("source", "")
     entry.setdefault("status", "Other")
     entry.setdefault("date", "")
     entry.setdefault("subject", "")
@@ -192,12 +231,22 @@ fi
 
 # ── Match extracted entries to existing jobs and update DB ────
 "$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" match "$TEMP_DIR/extracted.json" 2>&1
-"$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" export > "$JOB_DATA_FILE"
+
+# Mark emails as processed so they're skipped next run
+"$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" mark-processed "$TEMP_DIR/raw_emails.txt" 2>&1
+
 echo "  Database saved."
 echo ""
 
-# ── Step 3: Write to Google Sheets ────────────────────────────
-echo "Step 3/3: Updating Google Spreadsheet..."
+# ── Step 3: Detect stale applications ─────────────────────────
+echo "Step 3/4: Checking for stale applications..."
+"$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" stale 2>&1
+
+"$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" export > "$JOB_DATA_FILE"
+echo ""
+
+# ── Step 4: Write to Google Sheets ────────────────────────────
+echo "Step 4/4: Updating Google Spreadsheet..."
 
 "$VENV_DIR/bin/python3" "$SCRIPT_DIR/write_gsheet.py" "$JOB_DATA_FILE" 2>&1 || {
     echo "  Error: Google Sheets update failed."
