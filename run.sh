@@ -14,7 +14,12 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VENV_DIR="$SCRIPT_DIR/.venv"
 JOB_DATA_FILE="$SCRIPT_DIR/job_data.json"
 RUN_LOG="$SCRIPT_DIR/logs/run_history.log"
+COUNTS_FILE="$SCRIPT_DIR/.last_run_counts"
 TEMP_DIR=$(mktemp -d)
+
+# Reset counts for this run so stale values from a previous run don't leak
+# into the history log if we early-exit before the match step.
+printf 'added=0\nupdated=0\n' > "$COUNTS_FILE"
 
 # ── Determine trigger source ────────────────────────────────
 TRIGGER="${JOB_TRACKER_TRIGGER:-manual}"
@@ -230,7 +235,16 @@ if [ $? -ne 0 ]; then
 fi
 
 # ── Match extracted entries to existing jobs and update DB ────
-"$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" match "$TEMP_DIR/extracted.json" 2>&1
+# Capture the match output so we can parse "Matched X existing jobs, added Y
+# new jobs." into the run history log.
+MATCH_OUTPUT=$("$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" match "$TEMP_DIR/extracted.json" 2>&1)
+echo "$MATCH_OUTPUT"
+
+ADDED=$(printf '%s\n' "$MATCH_OUTPUT" | sed -n 's/.*added \([0-9][0-9]*\) new.*/\1/p' | head -1)
+UPDATED=$(printf '%s\n' "$MATCH_OUTPUT" | sed -n 's/.*Matched \([0-9][0-9]*\) existing.*/\1/p' | head -1)
+ADDED="${ADDED:-0}"
+UPDATED="${UPDATED:-0}"
+printf 'added=%s\nupdated=%s\n' "$ADDED" "$UPDATED" > "$COUNTS_FILE"
 
 # Mark emails as processed so they're skipped next run
 "$VENV_DIR/bin/python3" "$SCRIPT_DIR/job_db.py" mark-processed "$TEMP_DIR/raw_emails.txt" 2>&1
@@ -261,5 +275,6 @@ echo "============================================"
 # ── Log this run (only for manual triggers — launchd logs from its wrapper) ──
 if [ "$TRIGGER" = "manual" ]; then
     mkdir -p "$(dirname "$RUN_LOG")"
-    echo "$(date '+%Y-%m-%d %H:%M:%S') | manual   | success" >> "$RUN_LOG"
+    printf '%s | manual   | success | added=%3d | updated=%3d\n' \
+        "$(date '+%Y-%m-%d %H:%M:%S')" "${ADDED:-0}" "${UPDATED:-0}" >> "$RUN_LOG"
 fi

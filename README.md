@@ -286,7 +286,7 @@ launchctl start com.merinpeter.jobtracker
 launchctl list | grep jobtracker
 
 # View the latest run log
-ls -t ~/Documents/Career/Job\ Tracker/logs/*.log | head -1 | xargs cat
+ls -t ~/Documents/Career/Job\ Tracker/logs/runs/*.log | head -1 | xargs cat
 
 # Disable the schedule
 launchctl unload ~/Library/LaunchAgents/com.merinpeter.jobtracker.plist

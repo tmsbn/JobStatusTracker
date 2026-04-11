@@ -3,5 +3,6 @@
 credentials.json
 token.json
 .gsheet_id
+.last_run_counts
 job_tracker.db
 job_tracker.db.bak
